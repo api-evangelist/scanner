@@ -1,0 +1,367 @@
+openapi: 3.1.0
+info:
+  title: Scanner Ad Hoc Queries Detection Rules API
+  version: v1
+  description: Scanner is a cloud-native security data platform that indexes logs directly in Amazon S3 for fast full-text search, continuous streaming detections, and programmatic access to security data. This REST API (v1) covers searchable indexes, detection rules, event sinks, lookup tables, ad hoc queries, and account/query-capacity info. Authentication is a Scanner API key presented as an HTTP Bearer token. Most operations are tenant-scoped and require a `tenant_id`. The API base URL is environment-specific and shown in Settings > API Keys inside the Scanner app.
+  contact:
+    name: Scanner
+    url: https://docs.scanner.dev/scanner/
+  x-provenance:
+    generated: '2026-07-21'
+    method: generated
+    source: https://docs.scanner.dev/scanner/using-scanner-complete-feature-reference/developer-tools/api.md
+servers:
+- url: https://{environment}.scanner.dev
+  description: Environment-specific Scanner host. Find your environment/base URL in Settings > API Keys (the MCP endpoint uses the parallel form https://mcp.{environment}.scanner.dev/v1/mcp).
+  variables:
+    environment:
+      default: your-env-here
+      description: Your Scanner environment identifier from Settings > API Keys.
+security:
+- bearerAuth: []
+tags:
+- name: Detection Rules
+  description: Create, list, update, and delete streaming detection rules.
+paths:
+  /v1/detection_rule:
+    post:
+      operationId: createDetectionRule
+      tags:
+      - Detection Rules
+      summary: Create detection rule
+      description: Creates a new detection rule. If active, it is immediately scheduled for backfill and execution.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DetectionRuleCreate'
+      responses:
+        '200':
+          description: Created detection rule.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DetectionRule'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+    get:
+      operationId: listDetectionRules
+      tags:
+      - Detection Rules
+      summary: List detection rules
+      description: Lists all detection rules for a tenant (summaries exclude event_sink_ids).
+      parameters:
+      - $ref: '#/components/parameters/TenantId'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PageToken'
+      responses:
+        '200':
+          description: Paginated list of detection rule summaries.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      detection_rules:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/DetectionRule'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /v1/detection_rule/{id}:
+    get:
+      operationId: getDetectionRule
+      tags:
+      - Detection Rules
+      summary: Get detection rule
+      description: Retrieves a specific detection rule by id.
+      parameters:
+      - $ref: '#/components/parameters/PathId'
+      responses:
+        '200':
+          description: The detection rule.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DetectionRule'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateDetectionRule
+      tags:
+      - Detection Rules
+      summary: Update detection rule
+      description: Updates a detection rule. For synced rules, only enabled_state_override is modifiable.
+      parameters:
+      - $ref: '#/components/parameters/PathId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DetectionRuleUpdate'
+      responses:
+        '200':
+          description: Updated detection rule.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DetectionRule'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteDetectionRule
+      tags:
+      - Detection Rules
+      summary: Delete detection rule
+      description: Deletes a detection rule.
+      parameters:
+      - $ref: '#/components/parameters/PathId'
+      responses:
+        '200':
+          description: Id and tenant_id of the deleted rule.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeletedRef'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    DeletedRef:
+      type: object
+      properties:
+        id:
+          type: string
+        tenant_id:
+          type: string
+    DetectionRule:
+      type: object
+      properties:
+        id:
+          type: string
+        tenant_id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        time_range_s:
+          type: integer
+        run_frequency_s:
+          type: integer
+        enabled_state_override:
+          type: string
+        severity:
+          type: string
+        query_text:
+          type: string
+        event_sink_ids:
+          type: array
+          items:
+            type: string
+        alert_per_row:
+          type: boolean
+        tags:
+          type: array
+          items:
+            type: string
+        prepared_query_id:
+          type: string
+        alert_template:
+          $ref: '#/components/schemas/AlertTemplate'
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    DetectionRuleCreate:
+      type: object
+      required:
+      - tenant_id
+      - name
+      - description
+      - time_range_s
+      - run_frequency_s
+      - enabled_state_override
+      - severity
+      - query_text
+      - event_sink_ids
+      properties:
+        tenant_id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        time_range_s:
+          type: integer
+          description: Lookback period in seconds (minute granularity).
+        run_frequency_s:
+          type: integer
+          description: Execution frequency in seconds; must be <= time_range_s.
+        enabled_state_override:
+          type: string
+          enum:
+          - Active
+          - Staging
+          - Paused
+        severity:
+          type: string
+          enum:
+          - Unknown
+          - Information
+          - Low
+          - Medium
+          - High
+          - Critical
+          - Fatal
+          - Other
+        query_text:
+          type: string
+        event_sink_ids:
+          type: array
+          items:
+            type: string
+        alert_per_row:
+          type: boolean
+          default: false
+        tags:
+          type: array
+          items:
+            type: string
+        sync_key:
+          type: string
+        alert_template:
+          $ref: '#/components/schemas/AlertTemplate'
+    Pagination:
+      type: object
+      properties:
+        next_page_token:
+          type:
+          - string
+          - 'null'
+          description: Cursor for subsequent requests; null when exhausted.
+    AlertTemplate:
+      type: object
+      properties:
+        info:
+          type: array
+          items:
+            type: object
+            properties:
+              label:
+                type: string
+              value:
+                type: string
+              use_for_dedup:
+                type: boolean
+        actions:
+          type: array
+          items:
+            type: object
+            properties:
+              label:
+                type: string
+              value:
+                type: string
+                description: Supports {{field_name}} interpolation.
+    DetectionRuleUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        time_range_s:
+          type: integer
+        run_frequency_s:
+          type: integer
+        alert_per_row:
+          type: boolean
+        enabled_state_override:
+          type: string
+          enum:
+          - Active
+          - Staging
+          - Paused
+        severity:
+          type: string
+        query_text:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        event_sink_ids:
+          type: array
+          items:
+            type: string
+        sync_key:
+          type: string
+        alert_template:
+          $ref: '#/components/schemas/AlertTemplate'
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Human-readable error description.
+  parameters:
+    TenantId:
+      name: tenant_id
+      in: query
+      required: true
+      schema:
+        type: string
+      description: Unique identifier for the tenant.
+    PathId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Resource identifier.
+    PageSize:
+      name: pagination[page_size]
+      in: query
+      required: false
+      schema:
+        type: integer
+      description: Maximum results per page.
+    PageToken:
+      name: pagination[page_token]
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Cursor for the next page.
+  responses:
+    BadRequest:
+      description: Invalid request.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: invalid query
+    NotFound:
+      description: Resource not found (or resolves to a non-user index).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Scanner API key presented as `Authorization: Bearer <Scanner API Key>`. Create keys in Settings > API Keys.'

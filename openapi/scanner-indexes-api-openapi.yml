@@ -1,0 +1,147 @@
+openapi: 3.1.0
+info:
+  title: Scanner Ad Hoc Queries Indexes API
+  version: v1
+  description: Scanner is a cloud-native security data platform that indexes logs directly in Amazon S3 for fast full-text search, continuous streaming detections, and programmatic access to security data. This REST API (v1) covers searchable indexes, detection rules, event sinks, lookup tables, ad hoc queries, and account/query-capacity info. Authentication is a Scanner API key presented as an HTTP Bearer token. Most operations are tenant-scoped and require a `tenant_id`. The API base URL is environment-specific and shown in Settings > API Keys inside the Scanner app.
+  contact:
+    name: Scanner
+    url: https://docs.scanner.dev/scanner/
+  x-provenance:
+    generated: '2026-07-21'
+    method: generated
+    source: https://docs.scanner.dev/scanner/using-scanner-complete-feature-reference/developer-tools/api.md
+servers:
+- url: https://{environment}.scanner.dev
+  description: Environment-specific Scanner host. Find your environment/base URL in Settings > API Keys (the MCP endpoint uses the parallel form https://mcp.{environment}.scanner.dev/v1/mcp).
+  variables:
+    environment:
+      default: your-env-here
+      description: Your Scanner environment identifier from Settings > API Keys.
+security:
+- bearerAuth: []
+tags:
+- name: Indexes
+  description: List and retrieve searchable indexes for a tenant.
+paths:
+  /v1/index:
+    get:
+      operationId: listIndexes
+      tags:
+      - Indexes
+      summary: List indexes
+      description: List the searchable indexes for a tenant.
+      parameters:
+      - $ref: '#/components/parameters/TenantId'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PageToken'
+      responses:
+        '200':
+          description: Paginated list of indexes.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      indexes:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Index'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /v1/index/{id}:
+    get:
+      operationId: getIndex
+      tags:
+      - Indexes
+      summary: Get index
+      description: Retrieve a single searchable index by id. Non-user indexes (detection, audit, usage, legacy query-record) return 404.
+      parameters:
+      - $ref: '#/components/parameters/PathId'
+      responses:
+        '200':
+          description: The index.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Index'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    Index:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+    Pagination:
+      type: object
+      properties:
+        next_page_token:
+          type:
+          - string
+          - 'null'
+          description: Cursor for subsequent requests; null when exhausted.
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Human-readable error description.
+  parameters:
+    TenantId:
+      name: tenant_id
+      in: query
+      required: true
+      schema:
+        type: string
+      description: Unique identifier for the tenant.
+    PathId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Resource identifier.
+    PageSize:
+      name: pagination[page_size]
+      in: query
+      required: false
+      schema:
+        type: integer
+      description: Maximum results per page.
+    PageToken:
+      name: pagination[page_token]
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Cursor for the next page.
+  responses:
+    BadRequest:
+      description: Invalid request.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: invalid query
+    NotFound:
+      description: Resource not found (or resolves to a non-user index).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Scanner API key presented as `Authorization: Bearer <Scanner API Key>`. Create keys in Settings > API Keys.'
