@@ -1,0 +1,18 @@
+generated: '2026-07-21'
+method: searched
+source: https://scanner.dev/changelog
+versioning:
+  scheme: uri-path
+  current: v1
+  docs: https://docs.scanner.dev/scanner/using-scanner-complete-feature-reference/developer-tools/api
+changelog: https://scanner.dev/changelog
+deprecation:
+  policy_documented: false
+  notes: No public deprecation/sunset-header policy was found.
+status_page:
+  found: false
+  notes: No dedicated public status page (e.g. status.scanner.dev) was located.
+deprecated_operations: []
+notes: >-
+  Scanner publishes a dated product changelog (YYYY-MM-DD) but no separate API
+  deprecation policy or public uptime/status page was found during enrichment.

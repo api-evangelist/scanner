@@ -1,0 +1,30 @@
+generated: '2026-07-21'
+method: searched
+type: Webhooks
+source: https://docs.scanner.dev/scanner/using-scanner-complete-feature-reference/developer-tools/api/event-sinks
+summary: >-
+  Scanner delivers detection-rule alerts to configured "event sinks" — outbound
+  destinations you register via the Event Sinks API. The Webhook sink type POSTs
+  alert payloads to a URL you control; Slack and PagerDuty sinks deliver to those
+  platforms. Detection rules reference sinks by event_sink_ids.
+event_sink_types:
+  - type: Webhook
+    delivery: HTTP POST to a customer-supplied URL
+  - type: Slack
+    delivery: Message to a Slack channel
+  - type: PagerDuty
+    delivery: Incident to PagerDuty
+management_api:
+  create: openapi/scanner-openapi.yml#createEventSink
+  list: openapi/scanner-openapi.yml#listEventSinks
+  get: openapi/scanner-openapi.yml#getEventSink
+  update: openapi/scanner-openapi.yml#updateEventSink
+  delete: openapi/scanner-openapi.yml#deleteEventSink
+alert_template:
+  description: >-
+    Alerts support a customizable template with info fields (label/value,
+    use_for_dedup) and action buttons whose values support {{field_name}}
+    interpolation from the matched row.
+notes: >-
+  No AsyncAPI document is published; this is an outbound webhook/alert surface,
+  not a subscribe-able event stream.

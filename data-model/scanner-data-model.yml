@@ -1,0 +1,43 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/scanner-openapi.yml
+entities:
+  - name: Index
+    description: A searchable index of ingested security logs for a tenant.
+    id_field: id
+  - name: DetectionRule
+    description: A streaming detection rule that runs a query on a schedule and emits alerts.
+    id_field: id
+  - name: EventSink
+    description: An alert destination (Slack, Webhook, or PagerDuty).
+    id_field: id
+  - name: LookupTableFile
+    description: An uploaded lookup table used for enrichment in queries.
+    id_field: id
+  - name: Query
+    description: An ad hoc query result identified by qr_id.
+    id_field: qr_id
+  - name: Tenant
+    description: The account scope; nearly every resource is tenant-scoped via tenant_id.
+    id_field: tenant_id
+relationships:
+  - from: DetectionRule
+    to: EventSink
+    type: has_many
+    via: event_sink_ids
+  - from: DetectionRule
+    to: Tenant
+    type: belongs_to
+    via: tenant_id
+  - from: Index
+    to: Tenant
+    type: belongs_to
+    via: tenant_id
+  - from: EventSink
+    to: Tenant
+    type: belongs_to
+    via: tenant_id
+  - from: LookupTableFile
+    to: Tenant
+    type: belongs_to
+    via: tenant_id

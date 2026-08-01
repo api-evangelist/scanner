@@ -1,0 +1,17 @@
+generated: '2026-07-21'
+method: searched
+probe: true
+source: https://scanner.dev/trust
+url: https://scanner.dev/trust
+certifications:
+- SOC 2 Type II
+- GDPR
+compliance_notes: >-
+  SOC 2 Type II certified and GDPR compliant; offers data-residency options and
+  a Bring-Your-Own-Cloud deployment so customer data stays in the customer's own
+  cloud. No public bug-bounty or responsible-disclosure program was found.
+evidence:
+- source: https://scanner.dev/trust
+  keywords:
+  - soc 2 type ii
+  - gdpr

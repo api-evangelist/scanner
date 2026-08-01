@@ -1,7 +1,29 @@
 aid: scanner
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/scanner.png
 name: Scanner
-description: 'Scanner is a company surfaced as a portfolio company of crv and added to the API Evangelist
-  network as a stub for enrichment. Sector: security. This profile is a lead awaiting the enrichment pipeline.'
+description: >-
+  Scanner is a cloud-native security data platform that indexes security logs
+  directly in Amazon S3 to deliver full-text search across petabytes, continuous
+  streaming threat detection, and programmatic and agent-native access to
+  security data — an alternative to traditional SIEMs and data lakes. Its REST
+  API (v1) covers searchable indexes, detection rules, event sinks, lookup
+  tables, ad hoc queries, and query-capacity info, and it ships a hosted Model
+  Context Protocol (MCP) server plus a detection-rules-as-code CLI (scanner-cli).
+  Authentication is a Scanner API key presented as an HTTP Bearer token; console
+  SSO is brokered by Stytch (Okta, Google Workspace, Microsoft Entra, SCIM).
+  SOC 2 Type II certified and GDPR compliant. Backed by CRV.
 url: https://raw.githubusercontent.com/api-evangelist/scanner/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,16 +33,169 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
 - Security
-apis: []
+- SIEM
+- Log Analytics
+- Threat Detection
+- Security Operations
+- Observability
+- MCP
+apis:
+- aid: scanner:scanner-ad-hoc-queries-api
+  name: Scanner Ad Hoc Queries API
+  description: Run asynchronous or blocking full-text queries over indexed logs.
+  humanURL: >-
+    https://docs.scanner.dev/scanner/using-scanner-complete-feature-reference/developer-tools/api
+  baseURL: https://app.scanner.dev
+  tags:
+  - Ad Hoc Queries
+  properties:
+  - type: OpenAPI
+    url: openapi/scanner-ad-hoc-queries-api-openapi.yml
+  - type: APIReference
+    url: >-
+      https://docs.scanner.dev/scanner/using-scanner-complete-feature-reference/developer-tools/api
+- aid: scanner:scanner-detection-rules-api
+  name: Scanner Detection Rules API
+  description: Create, list, update, and delete streaming detection rules.
+  humanURL: >-
+    https://docs.scanner.dev/scanner/using-scanner-complete-feature-reference/developer-tools/api
+  baseURL: https://app.scanner.dev
+  tags:
+  - Detection Rules
+  properties:
+  - type: OpenAPI
+    url: openapi/scanner-detection-rules-api-openapi.yml
+  - type: APIReference
+    url: >-
+      https://docs.scanner.dev/scanner/using-scanner-complete-feature-reference/developer-tools/api
+- aid: scanner:scanner-event-sinks-api
+  name: Scanner Event Sinks API
+  description: Manage alert destinations (Slack, Webhook, PagerDuty).
+  humanURL: >-
+    https://docs.scanner.dev/scanner/using-scanner-complete-feature-reference/developer-tools/api
+  baseURL: https://app.scanner.dev
+  tags:
+  - Event Sinks
+  properties:
+  - type: OpenAPI
+    url: openapi/scanner-event-sinks-api-openapi.yml
+  - type: APIReference
+    url: >-
+      https://docs.scanner.dev/scanner/using-scanner-complete-feature-reference/developer-tools/api
+- aid: scanner:scanner-indexes-api
+  name: Scanner Indexes API
+  description: List and retrieve searchable indexes for a tenant.
+  humanURL: >-
+    https://docs.scanner.dev/scanner/using-scanner-complete-feature-reference/developer-tools/api
+  baseURL: https://app.scanner.dev
+  tags:
+  - Indexes
+  properties:
+  - type: OpenAPI
+    url: openapi/scanner-indexes-api-openapi.yml
+  - type: APIReference
+    url: >-
+      https://docs.scanner.dev/scanner/using-scanner-complete-feature-reference/developer-tools/api
+- aid: scanner:scanner-info-api
+  name: Scanner Info API
+  description: Account and query-capacity metrics.
+  humanURL: >-
+    https://docs.scanner.dev/scanner/using-scanner-complete-feature-reference/developer-tools/api
+  baseURL: https://app.scanner.dev
+  tags:
+  - Info
+  properties:
+  - type: OpenAPI
+    url: openapi/scanner-info-api-openapi.yml
+  - type: APIReference
+    url: >-
+      https://docs.scanner.dev/scanner/using-scanner-complete-feature-reference/developer-tools/api
+- aid: scanner:scanner-lookup-tables-api
+  name: Scanner Lookup Tables API
+  description: Upload, manage, and download lookup table files for enrichment.
+  humanURL: >-
+    https://docs.scanner.dev/scanner/using-scanner-complete-feature-reference/developer-tools/api
+  baseURL: https://app.scanner.dev
+  tags:
+  - Lookup Tables
+  properties:
+  - type: OpenAPI
+    url: openapi/scanner-lookup-tables-api-openapi.yml
+  - type: APIReference
+    url: >-
+      https://docs.scanner.dev/scanner/using-scanner-complete-feature-reference/developer-tools/api
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DeveloperPortal
+  url: https://docs.scanner.dev/scanner/
+- type: Documentation
+  url: https://docs.scanner.dev/scanner/
+- type: APIReference
+  url: https://docs.scanner.dev/scanner/using-scanner-complete-feature-reference/developer-tools/api
+- type: GettingStarted
+  url: https://docs.scanner.dev/scanner/getting-started/quick-setup-overview
+- type: Blog
+  url: https://scanner.dev/blog
+- type: Pricing
+  url: https://scanner.dev/pricing
+- type: SignUp
+  url: https://app.scanner.dev/
+- type: Login
+  url: https://app.scanner.dev/
+- type: TermsOfService
+  url: https://scanner.dev/terms
+- type: PrivacyPolicy
+  url: https://scanner.dev/privacy
+- type: ChangeLog
+  url: https://scanner.dev/changelog
+- type: ChangeLog
+  url: changelog/scanner-changelog.yml
+- type: Authentication
+  url: authentication/scanner-authentication.yml
+- type: MCPServer
+  url: mcp/scanner-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: CLI
+  url: cli/scanner-cli.yml
+- type: Packages
+  url: packages/scanner-packages.yml
+- type: Conventions
+  url: conventions/scanner-conventions.yml
+- type: ErrorCatalog
+  url: errors/scanner-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/scanner-lifecycle.yml
+- type: DataModel
+  url: data-model/scanner-data-model.yml
+- type: Conformance
+  url: conformance/scanner-conformance.yml
+- type: Compliance
+  url: https://scanner.dev/trust
+- type: Webhooks
+  url: asyncapi/scanner-webhooks.yml
+- type: Overlay
+  url: overlays/scanner-overlay.yaml
+- type: LLMsTxt
+  url: llms/scanner-llms.txt
+- type: AgenticAccess
+  url: agentic-access/scanner-agentic-access.yml
+- type: TrustCenter
+  url: security/scanner-trust-center.yml
+- type: DomainSecurity
+  url: security/scanner-domain-security.yml
 - type: Website
   url: https://scanner.dev/
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 19
+  pass: local-v1

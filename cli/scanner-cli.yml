@@ -1,0 +1,35 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.scanner.dev/scanner/using-scanner-complete-feature-reference/detections-and-alerting/detection-rules/detection-rules-as-code/cli
+name: scanner-cli
+purpose: Manage Scanner detection-rules-as-code (validate, test, sync from Git).
+install:
+  - method: pipx
+    command: pipx install scanner-cli
+    registry: pypi
+authentication:
+  env:
+    - SCANNER_API_URL
+    - SCANNER_API_KEY
+  flags:
+    - --api-url
+    - --api-key
+commands:
+  - name: validate
+    purpose: Check that specified files are valid Scanner detection rule files.
+    flags: [-f, -d, -r]
+    example: scanner-cli validate -f detections/some_detection.yaml
+  - name: run-tests
+    purpose: Run detection rule tests on YAML files with correct schema headers.
+    flags: [-f, -d, -r]
+    example: scanner-cli run-tests -d detections
+  - name: sync-git-repo
+    purpose: >-
+      Upload tracked files in a Git working tree to a push sync source, running
+      the validate/test/materialize pipeline.
+    flags: [--push-key]
+    example: scanner-cli sync-git-repo --push-key <push-key>
+  - name: sync
+    purpose: Create and update individual detection rules (does not delete removed rules).
+    flags: [-f, -d, -r, --team-id, --sync-config-file]
+    example: scanner-cli sync -f detections/some_detection.yaml --team-id <id> --sync-config-file detections/sync-config.yaml

@@ -1,0 +1,18 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.scanner.dev/scanner/using-scanner-complete-feature-reference/detections-and-alerting/detection-rules/detection-rules-as-code/cli
+packages:
+  - language: python
+    registry: pypi
+    name: scanner-cli
+    url: https://pypi.org/project/scanner-cli/
+    install: pipx install scanner-cli
+    official: true
+    description: >-
+      First-party Scanner CLI for validating, testing, and syncing
+      detection-rules-as-code (validate, run-tests, sync, sync-git-repo).
+notes: >-
+  Scanner distributes its detection-rules CLI as the `scanner-cli` PyPI package
+  (recommended install via pipx). No first-party JavaScript/Go/Ruby client SDKs
+  were found published; programmatic access is via the REST API and the hosted
+  MCP server.

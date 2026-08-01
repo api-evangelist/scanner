@@ -1,0 +1,28 @@
+generated: '2026-07-21'
+method: searched
+source: https://scanner.dev/trust
+standards:
+  - id: soc2-type-ii
+    conforms: true
+    evidence: SOC 2 Type II certified (scanner.dev/trust).
+  - id: gdpr
+    conforms: true
+    evidence: GDPR compliant (scanner.dev/trust).
+  - id: oidc
+    conforms: true
+    evidence: Console SSO supports OpenID Connect (Okta, Microsoft Entra) via Stytch.
+  - id: saml
+    conforms: true
+    evidence: Console SSO supports SAML (Okta, Google Workspace, Microsoft Entra).
+  - id: scim
+    conforms: true
+    evidence: SCIM user provisioning documented under administration/authentication-and-sso.
+  - id: oauth2
+    conforms: false
+    evidence: REST API uses a static API-key Bearer token, not OAuth2 flows.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors return a plain JSON { error } envelope, not application/problem+json.
+  - id: cursor-pagination
+    conforms: true
+    evidence: List endpoints use pagination[page_size]/page_token cursors.

@@ -1,0 +1,24 @@
+{
+  "provider": "scanner",
+  "sources": [
+    "scanner-ad-hoc-queries-api-openapi.yml",
+    "scanner-detection-rules-api-openapi.yml",
+    "scanner-event-sinks-api-openapi.yml",
+    "scanner-indexes-api-openapi.yml",
+    "scanner-info-api-openapi.yml",
+    "scanner-lookup-tables-api-openapi.yml"
+  ],
+  "outputs": [
+    "scanner-ad-hoc-queries-api-openapi.yml",
+    "scanner-detection-rules-api-openapi.yml",
+    "scanner-event-sinks-api-openapi.yml",
+    "scanner-indexes-api-openapi.yml",
+    "scanner-info-api-openapi.yml",
+    "scanner-lookup-tables-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

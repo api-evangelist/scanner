@@ -1,0 +1,35 @@
+generated: '2026-07-21'
+method: searched
+source: https://scanner.dev/changelog
+scheme: date
+date_format: YYYY-MM-DD
+url: https://scanner.dev/changelog
+entries:
+  - date: '2026-06-08'
+    title: Export Improvements
+    highlights: >-
+      Background export jobs let you keep working; export up to 1 million rows or
+      4GB, plus an "export current view" option for filtered results. Direct S3
+      export announced as coming soon.
+  - date: '2026-05-19'
+    title: Agent Skills for Scanner
+    highlights: >-
+      MCP now includes 12 pre-built skills for SOC and detection-engineering
+      tasks: alert triage, threat hunts, IOC reputation checks, coverage
+      reporting, and rule authoring from plain-language descriptions.
+  - date: '2026-05-14'
+    title: Atlassian Logs in Scanner Collect
+    highlights: >-
+      Connect Jira, Confluence, and other Atlassian audit logs; monitor project
+      access, issue modifications, page edits, permission changes, user
+      management, and administrative actions.
+  - date: '2026-05-12'
+    title: IPInfo Threat Intelligence Integration
+    highlights: >-
+      Enrichment identifies VPNs, proxies, bots, and hosting providers, working
+      alongside the existing AlienVault OTX integration to reduce false positives.
+  - date: '2026-05-11'
+    title: Sample Queries Pre-loaded for Collect Sources
+    highlights: >-
+      Ready-to-run queries auto-populate when connecting new sources such as
+      Okta, GitHub, or Snowflake.

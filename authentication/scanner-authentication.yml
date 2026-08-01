@@ -1,0 +1,26 @@
+generated: '2026-07-21'
+method: searched
+source: openapi/scanner-openapi.yml
+docs: https://docs.scanner.dev/scanner/using-scanner-complete-feature-reference/developer-tools/api
+notes: >-
+  API access uses a Scanner API key presented as an HTTP Bearer token
+  (Authorization: Bearer <key>); create/manage keys in Settings > API Keys.
+  Console/SSO sign-in is separate, brokered by Stytch, and supports Okta
+  (OIDC/SAML), Google Workspace SAML, Microsoft Entra (OIDC/SAML), most other
+  SAML/OIDC providers, and SCIM provisioning.
+sso:
+  broker: Stytch
+  providers: [Okta OIDC, Okta SAML, Google Workspace SAML, Microsoft Entra OIDC, Microsoft Entra SAML]
+  scim: true
+  docs: https://docs.scanner.dev/scanner/using-scanner-complete-feature-reference/administration/authentication-and-sso
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: 'Scanner API key presented as `Authorization: Bearer <Scanner API Key>`. Create
+    keys in Settings > API Keys.'
+  sources:
+  - openapi/scanner-openapi.yml

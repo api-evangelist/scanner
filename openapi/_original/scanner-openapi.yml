@@ -1,0 +1,737 @@
+openapi: 3.1.0
+info:
+  title: Scanner API
+  version: v1
+  description: >-
+    Scanner is a cloud-native security data platform that indexes logs directly
+    in Amazon S3 for fast full-text search, continuous streaming detections, and
+    programmatic access to security data. This REST API (v1) covers searchable
+    indexes, detection rules, event sinks, lookup tables, ad hoc queries, and
+    account/query-capacity info. Authentication is a Scanner API key presented as
+    an HTTP Bearer token. Most operations are tenant-scoped and require a
+    `tenant_id`. The API base URL is environment-specific and shown in
+    Settings > API Keys inside the Scanner app.
+  contact:
+    name: Scanner
+    url: https://docs.scanner.dev/scanner/
+  x-provenance:
+    generated: '2026-07-21'
+    method: generated
+    source: https://docs.scanner.dev/scanner/using-scanner-complete-feature-reference/developer-tools/api.md
+servers:
+  - url: https://{environment}.scanner.dev
+    description: >-
+      Environment-specific Scanner host. Find your environment/base URL in
+      Settings > API Keys (the MCP endpoint uses the parallel form
+      https://mcp.{environment}.scanner.dev/v1/mcp).
+    variables:
+      environment:
+        default: your-env-here
+        description: Your Scanner environment identifier from Settings > API Keys.
+security:
+  - bearerAuth: []
+tags:
+  - name: Indexes
+    description: List and retrieve searchable indexes for a tenant.
+  - name: Detection Rules
+    description: Create, list, update, and delete streaming detection rules.
+  - name: Event Sinks
+    description: Manage alert destinations (Slack, Webhook, PagerDuty).
+  - name: Lookup Tables
+    description: Upload, manage, and download lookup table files for enrichment.
+  - name: Ad Hoc Queries
+    description: Run asynchronous or blocking full-text queries over indexed logs.
+  - name: Info
+    description: Account and query-capacity metrics.
+paths:
+  /v1/index:
+    get:
+      operationId: listIndexes
+      tags: [Indexes]
+      summary: List indexes
+      description: List the searchable indexes for a tenant.
+      parameters:
+        - $ref: '#/components/parameters/TenantId'
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageToken'
+      responses:
+        '200':
+          description: Paginated list of indexes.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      indexes:
+                        type: array
+                        items: { $ref: '#/components/schemas/Index' }
+                  pagination: { $ref: '#/components/schemas/Pagination' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+  /v1/index/{id}:
+    get:
+      operationId: getIndex
+      tags: [Indexes]
+      summary: Get index
+      description: Retrieve a single searchable index by id. Non-user indexes (detection, audit, usage, legacy query-record) return 404.
+      parameters:
+        - $ref: '#/components/parameters/PathId'
+      responses:
+        '200':
+          description: The index.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Index' }
+        '404': { $ref: '#/components/responses/NotFound' }
+  /v1/detection_rule:
+    post:
+      operationId: createDetectionRule
+      tags: [Detection Rules]
+      summary: Create detection rule
+      description: Creates a new detection rule. If active, it is immediately scheduled for backfill and execution.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/DetectionRuleCreate' }
+      responses:
+        '200':
+          description: Created detection rule.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/DetectionRule' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+    get:
+      operationId: listDetectionRules
+      tags: [Detection Rules]
+      summary: List detection rules
+      description: Lists all detection rules for a tenant (summaries exclude event_sink_ids).
+      parameters:
+        - $ref: '#/components/parameters/TenantId'
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageToken'
+      responses:
+        '200':
+          description: Paginated list of detection rule summaries.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      detection_rules:
+                        type: array
+                        items: { $ref: '#/components/schemas/DetectionRule' }
+                  pagination: { $ref: '#/components/schemas/Pagination' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+  /v1/detection_rule/{id}:
+    get:
+      operationId: getDetectionRule
+      tags: [Detection Rules]
+      summary: Get detection rule
+      description: Retrieves a specific detection rule by id.
+      parameters:
+        - $ref: '#/components/parameters/PathId'
+      responses:
+        '200':
+          description: The detection rule.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/DetectionRule' }
+        '404': { $ref: '#/components/responses/NotFound' }
+    put:
+      operationId: updateDetectionRule
+      tags: [Detection Rules]
+      summary: Update detection rule
+      description: Updates a detection rule. For synced rules, only enabled_state_override is modifiable.
+      parameters:
+        - $ref: '#/components/parameters/PathId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/DetectionRuleUpdate' }
+      responses:
+        '200':
+          description: Updated detection rule.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/DetectionRule' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '404': { $ref: '#/components/responses/NotFound' }
+    delete:
+      operationId: deleteDetectionRule
+      tags: [Detection Rules]
+      summary: Delete detection rule
+      description: Deletes a detection rule.
+      parameters:
+        - $ref: '#/components/parameters/PathId'
+      responses:
+        '200':
+          description: Id and tenant_id of the deleted rule.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/DeletedRef' }
+        '404': { $ref: '#/components/responses/NotFound' }
+  /v1/event_sink:
+    post:
+      operationId: createEventSink
+      tags: [Event Sinks]
+      summary: Create event sink
+      description: Create a new event sink (Slack, Webhook, or PagerDuty) destination for alerts.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/EventSinkCreate' }
+      responses:
+        '200':
+          description: Created event sink.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/EventSink' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+    get:
+      operationId: listEventSinks
+      tags: [Event Sinks]
+      summary: List event sinks
+      description: Retrieve all event sinks for a tenant.
+      parameters:
+        - $ref: '#/components/parameters/TenantId'
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageToken'
+      responses:
+        '200':
+          description: Paginated list of event sinks.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      event_sinks:
+                        type: array
+                        items: { $ref: '#/components/schemas/EventSink' }
+                  pagination: { $ref: '#/components/schemas/Pagination' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+  /v1/event_sink/{id}:
+    get:
+      operationId: getEventSink
+      tags: [Event Sinks]
+      summary: Get event sink
+      description: Retrieve a specific event sink by id.
+      parameters:
+        - $ref: '#/components/parameters/PathId'
+      responses:
+        '200':
+          description: The event sink.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/EventSink' }
+        '404': { $ref: '#/components/responses/NotFound' }
+    put:
+      operationId: updateEventSink
+      tags: [Event Sinks]
+      summary: Update event sink
+      description: Modify an existing event sink.
+      parameters:
+        - $ref: '#/components/parameters/PathId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/EventSinkUpdate' }
+      responses:
+        '200':
+          description: Updated event sink.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/EventSink' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '404': { $ref: '#/components/responses/NotFound' }
+    delete:
+      operationId: deleteEventSink
+      tags: [Event Sinks]
+      summary: Delete event sink
+      description: Remove an event sink.
+      parameters:
+        - $ref: '#/components/parameters/PathId'
+      responses:
+        '200':
+          description: Id and tenant_id of the deleted event sink.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/DeletedRef' }
+        '404': { $ref: '#/components/responses/NotFound' }
+  /v1/lookup_table_file/upload/tenant/{tenant_id}:
+    post:
+      operationId: uploadLookupTableFile
+      tags: [Lookup Tables]
+      summary: Upload lookup table file
+      description: Upload a new lookup table file for enrichment lookups.
+      parameters:
+        - name: tenant_id
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [file, name]
+              properties:
+                file:
+                  type: string
+                  format: binary
+                name: { type: string }
+                description: { type: string }
+      responses:
+        '200':
+          description: Created lookup table file metadata.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/LookupTableFile' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+  /v1/lookup_table_file:
+    get:
+      operationId: listLookupTableFiles
+      tags: [Lookup Tables]
+      summary: List lookup table files
+      description: List all lookup table files for a tenant.
+      parameters:
+        - $ref: '#/components/parameters/TenantId'
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageToken'
+      responses:
+        '200':
+          description: Paginated list of lookup table files.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      lookup_table_files:
+                        type: array
+                        items: { $ref: '#/components/schemas/LookupTableFile' }
+                  pagination: { $ref: '#/components/schemas/Pagination' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+  /v1/lookup_table_file/{id}:
+    get:
+      operationId: getLookupTableFile
+      tags: [Lookup Tables]
+      summary: Get lookup table file
+      description: Retrieve metadata for a specific lookup table file.
+      parameters:
+        - $ref: '#/components/parameters/PathId'
+      responses:
+        '200':
+          description: The lookup table file metadata.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/LookupTableFile' }
+        '404': { $ref: '#/components/responses/NotFound' }
+    put:
+      operationId: updateLookupTableFile
+      tags: [Lookup Tables]
+      summary: Update lookup table file
+      description: Update lookup table file metadata.
+      parameters:
+        - $ref: '#/components/parameters/PathId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description: { type: string }
+      responses:
+        '200':
+          description: Updated lookup table file metadata.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/LookupTableFile' }
+        '404': { $ref: '#/components/responses/NotFound' }
+    delete:
+      operationId: deleteLookupTableFile
+      tags: [Lookup Tables]
+      summary: Delete lookup table file
+      description: Delete a lookup table file.
+      parameters:
+        - $ref: '#/components/parameters/PathId'
+      responses:
+        '200':
+          description: Deleted.
+        '404': { $ref: '#/components/responses/NotFound' }
+  /v1/lookup_table_file/{id}/data:
+    get:
+      operationId: downloadLookupTableFile
+      tags: [Lookup Tables]
+      summary: Download lookup table file
+      description: Download the stored lookup table file contents.
+      parameters:
+        - $ref: '#/components/parameters/PathId'
+      responses:
+        '200':
+          description: The stored file contents.
+          content:
+            application/octet-stream:
+              schema: { type: string, format: binary }
+        '404': { $ref: '#/components/responses/NotFound' }
+  /v1/lookup_table_file/{id}/csv_preview:
+    get:
+      operationId: previewLookupTableFile
+      tags: [Lookup Tables]
+      summary: Preview lookup table file
+      description: Preview the first N rows of a lookup table file as CSV.
+      parameters:
+        - $ref: '#/components/parameters/PathId'
+        - name: limit
+          in: query
+          required: true
+          schema: { type: integer }
+          description: Number of rows to preview.
+      responses:
+        '200':
+          description: CSV preview.
+          content:
+            text/csv:
+              schema: { type: string }
+        '404': { $ref: '#/components/responses/NotFound' }
+  /v1/lookup_table_file/{id}/replace_data:
+    post:
+      operationId: replaceLookupTableFileData
+      tags: [Lookup Tables]
+      summary: Replace lookup table file data
+      description: Replace the contents of an existing lookup table file.
+      parameters:
+        - $ref: '#/components/parameters/PathId'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [file]
+              properties:
+                file:
+                  type: string
+                  format: binary
+                description: { type: string }
+      responses:
+        '200':
+          description: Updated lookup table file metadata.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/LookupTableFile' }
+        '404': { $ref: '#/components/responses/NotFound' }
+  /v1/start_query:
+    post:
+      operationId: startQuery
+      tags: [Ad Hoc Queries]
+      summary: Start ad hoc query
+      description: Create an asynchronous ad hoc query. Returns a query-result id (qr_id) to poll.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/QueryRequest' }
+      responses:
+        '200':
+          description: Query accepted.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  qr_id: { type: string, format: uuid }
+              example: { qr_id: "3f8c1c9a-0f2e-4a2b-9c1a-2d3e4f5a6b7c" }
+        '400': { $ref: '#/components/responses/BadRequest' }
+  /v1/query_progress/{qr_id}:
+    get:
+      operationId: getQueryProgress
+      tags: [Ad Hoc Queries]
+      summary: Get query progress
+      description: Check execution status and retrieve intermediate or final results for an ad hoc query. Poll about once per second.
+      parameters:
+        - name: qr_id
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+        - name: show_intermediate_results
+          in: query
+          required: false
+          schema: { type: boolean, default: true }
+      responses:
+        '200':
+          description: Query status and results.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/QueryResult' }
+        '404': { $ref: '#/components/responses/NotFound' }
+  /v1/cancel_query/{qr_id}:
+    post:
+      operationId: cancelQuery
+      tags: [Ad Hoc Queries]
+      summary: Cancel query
+      description: Cancel an active query and free resources. Idempotent.
+      parameters:
+        - name: qr_id
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '204':
+          description: Query cancelled (no body).
+  /v1/blocking_query:
+    post:
+      operationId: blockingQuery
+      tags: [Ad Hoc Queries]
+      summary: Blocking ad hoc query
+      description: Execute a synchronous ad hoc query, holding the connection open until completion or a 300-second timeout.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/QueryRequest' }
+      responses:
+        '200':
+          description: Completed query result.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/QueryResult' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '504':
+          description: Query exceeded the 300-second blocking timeout; no results returned.
+  /v1/info/query_capacity:
+    get:
+      operationId: getQueryCapacity
+      tags: [Info]
+      summary: Get query capacity
+      description: Retrieve query capacity metrics and configuration for a tenant.
+      parameters:
+        - $ref: '#/components/parameters/TenantId'
+      responses:
+        '200':
+          description: Query capacity metrics.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/QueryCapacity' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: "Scanner API key presented as `Authorization: Bearer <Scanner API Key>`. Create keys in Settings > API Keys."
+  parameters:
+    TenantId:
+      name: tenant_id
+      in: query
+      required: true
+      schema: { type: string }
+      description: Unique identifier for the tenant.
+    PathId:
+      name: id
+      in: path
+      required: true
+      schema: { type: string }
+      description: Resource identifier.
+    PageSize:
+      name: pagination[page_size]
+      in: query
+      required: false
+      schema: { type: integer }
+      description: Maximum results per page.
+    PageToken:
+      name: pagination[page_token]
+      in: query
+      required: false
+      schema: { type: string }
+      description: Cursor for the next page.
+  responses:
+    BadRequest:
+      description: Invalid request.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+          example: { error: "invalid query" }
+    NotFound:
+      description: Resource not found (or resolves to a non-user index).
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+  schemas:
+    Pagination:
+      type: object
+      properties:
+        next_page_token:
+          type: [string, 'null']
+          description: Cursor for subsequent requests; null when exhausted.
+    Error:
+      type: object
+      properties:
+        error: { type: string, description: Human-readable error description. }
+    DeletedRef:
+      type: object
+      properties:
+        id: { type: string }
+        tenant_id: { type: string }
+    Index:
+      type: object
+      properties:
+        id: { type: string }
+        name: { type: string }
+        description: { type: string }
+    DetectionRuleCreate:
+      type: object
+      required: [tenant_id, name, description, time_range_s, run_frequency_s, enabled_state_override, severity, query_text, event_sink_ids]
+      properties:
+        tenant_id: { type: string }
+        name: { type: string }
+        description: { type: string }
+        time_range_s: { type: integer, description: Lookback period in seconds (minute granularity). }
+        run_frequency_s: { type: integer, description: Execution frequency in seconds; must be <= time_range_s. }
+        enabled_state_override:
+          type: string
+          enum: [Active, Staging, Paused]
+        severity:
+          type: string
+          enum: [Unknown, Information, Low, Medium, High, Critical, Fatal, Other]
+        query_text: { type: string }
+        event_sink_ids:
+          type: array
+          items: { type: string }
+        alert_per_row: { type: boolean, default: false }
+        tags:
+          type: array
+          items: { type: string }
+        sync_key: { type: string }
+        alert_template: { $ref: '#/components/schemas/AlertTemplate' }
+    DetectionRuleUpdate:
+      type: object
+      properties:
+        name: { type: string }
+        description: { type: string }
+        time_range_s: { type: integer }
+        run_frequency_s: { type: integer }
+        alert_per_row: { type: boolean }
+        enabled_state_override: { type: string, enum: [Active, Staging, Paused] }
+        severity: { type: string }
+        query_text: { type: string }
+        tags: { type: array, items: { type: string } }
+        event_sink_ids: { type: array, items: { type: string } }
+        sync_key: { type: string }
+        alert_template: { $ref: '#/components/schemas/AlertTemplate' }
+    DetectionRule:
+      type: object
+      properties:
+        id: { type: string }
+        tenant_id: { type: string }
+        name: { type: string }
+        description: { type: string }
+        time_range_s: { type: integer }
+        run_frequency_s: { type: integer }
+        enabled_state_override: { type: string }
+        severity: { type: string }
+        query_text: { type: string }
+        event_sink_ids: { type: array, items: { type: string } }
+        alert_per_row: { type: boolean }
+        tags: { type: array, items: { type: string } }
+        prepared_query_id: { type: string }
+        alert_template: { $ref: '#/components/schemas/AlertTemplate' }
+        created_at: { type: string, format: date-time }
+        updated_at: { type: string, format: date-time }
+    AlertTemplate:
+      type: object
+      properties:
+        info:
+          type: array
+          items:
+            type: object
+            properties:
+              label: { type: string }
+              value: { type: string }
+              use_for_dedup: { type: boolean }
+        actions:
+          type: array
+          items:
+            type: object
+            properties:
+              label: { type: string }
+              value: { type: string, description: "Supports {{field_name}} interpolation." }
+    EventSinkCreate:
+      type: object
+      required: [tenant_id, name, description, event_sink_args]
+      properties:
+        tenant_id: { type: string }
+        name: { type: string }
+        description: { type: string }
+        event_sink_args:
+          type: object
+          description: Configuration for Slack, Webhook, or PagerDuty.
+    EventSinkUpdate:
+      type: object
+      properties:
+        name: { type: string }
+        description: { type: string }
+        event_sink_args: { type: object }
+    EventSink:
+      type: object
+      properties:
+        id: { type: string }
+        tenant_id: { type: string }
+        name: { type: string }
+        description: { type: string }
+        event_sink_type: { type: string, enum: [Slack, Webhook, PagerDuty] }
+        configuration: { type: object }
+        created_at: { type: string, format: date-time }
+        updated_at: { type: string, format: date-time }
+    LookupTableFile:
+      type: object
+      properties:
+        id: { type: string }
+        tenant_id: { type: string }
+        name: { type: string }
+        description: { type: string }
+        created_at: { type: string, format: date-time }
+        updated_at: { type: string, format: date-time }
+    QueryRequest:
+      type: object
+      required: [query, start_time, end_time]
+      properties:
+        query: { type: string, description: Scanner query text. }
+        start_time: { type: string, format: date-time, description: RFC 3339 start timestamp (inclusive). }
+        end_time: { type: string, format: date-time, description: RFC 3339 end timestamp (exclusive). }
+        max_rows: { type: integer, default: 1000, maximum: 100000 }
+        max_bytes: { type: integer, default: 134217728, description: "Result size cap in bytes; default/max 128MB, min 1MB." }
+        scan_back_to_front: { type: boolean, default: true }
+    QueryResult:
+      type: object
+      properties:
+        is_completed: { type: boolean }
+        results:
+          type: object
+          properties:
+            column_ordering: { type: array, items: { type: string } }
+            rows: { type: array, items: { type: array, items: {} } }
+        metadata: { type: object }
+    QueryCapacity:
+      type: object
+      properties:
+        this_month_used_query_capacity_gb: { type: number }
+        this_month_provisioned_query_capacity_gb: { type: number }
+        this_month_on_demand_query_capacity_gb: { type: number }
+        number_of_days_this_month: { type: number }
+        contract_provisioned_query_capacity_gb_per_day: { type: number }

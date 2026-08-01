@@ -1,0 +1,53 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.scanner.dev/scanner/using-scanner-complete-feature-reference/developer-tools/api
+authentication:
+  style: bearer
+  header: Authorization
+  format: "Bearer <Scanner API Key>"
+  tenant_scoping: Most operations require a tenant_id (query param or path).
+  ref: authentication/scanner-authentication.yml
+idempotency:
+  supported: false
+  notes: >-
+    No documented Idempotency-Key header. Query cancellation
+    (POST /v1/cancel_query/{qr_id}) is explicitly idempotent, but the API does
+    not publish a general request-idempotency contract.
+pagination:
+  style: cursor
+  request_params:
+    - "pagination[page_size]"
+    - "pagination[page_token]"
+  response_fields:
+    - pagination.next_page_token
+  defaults:
+    index_page_size: 100
+    detection_rule_page_size: 50
+    event_sink_page_size: 50
+  exhausted_signal: next_page_token is null when no more pages remain
+  ref: openapi/scanner-openapi.yml
+versioning:
+  style: uri-path
+  current: v1
+  example: /v1/detection_rule
+async_queries:
+  pattern: submit-then-poll
+  submit: POST /v1/start_query returns { qr_id }
+  poll: GET /v1/query_progress/{qr_id} (recommended ~1s interval) until is_completed
+  cancel: POST /v1/cancel_query/{qr_id} (idempotent, 204)
+  blocking_alternative: POST /v1/blocking_query (synchronous, 300s timeout -> 504)
+  limits:
+    max_rows_default: 1000
+    max_rows_max: 100000
+    max_bytes_default: 134217728
+    max_bytes_min: 1048576
+error_envelope:
+  field: error
+  format: json
+  ref: errors/scanner-problem-types.yml
+rate_limiting:
+  documented: false
+  notes: >-
+    No explicit rate-limit headers documented. Query volume is governed by
+    contractual query-capacity (GB) rather than request-rate limits; see
+    GET /v1/info/query_capacity.

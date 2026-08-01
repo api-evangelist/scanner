@@ -1,0 +1,38 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/scanner-openapi.yml
+format: json
+envelope:
+  field: error
+  description: >-
+    Error responses return a JSON object with a single `error` string
+    (e.g. { "error": "invalid query" }). Scanner does not use RFC 9457
+    application/problem+json.
+problems:
+  - status: 400
+    title: Bad request
+    description: Invalid request parameters or malformed query.
+    envelope_example: '{ "error": "invalid query" }'
+    source_operations:
+      - openapi/scanner-openapi.yml#startQuery
+      - openapi/scanner-openapi.yml#blockingQuery
+      - openapi/scanner-openapi.yml#createDetectionRule
+      - openapi/scanner-openapi.yml#createEventSink
+  - status: 404
+    title: Not found
+    description: >-
+      Resource does not exist, or an index id resolves to a non-user index
+      (detection, audit, usage, legacy query-record indexes return 404).
+    source_operations:
+      - openapi/scanner-openapi.yml#getIndex
+      - openapi/scanner-openapi.yml#getDetectionRule
+      - openapi/scanner-openapi.yml#getEventSink
+      - openapi/scanner-openapi.yml#getLookupTableFile
+  - status: 504
+    title: Query timeout
+    description: >-
+      A /v1/blocking_query request exceeded the 300-second synchronous timeout;
+      no results are returned. Use the asynchronous start_query/query_progress
+      flow for long-running queries.
+    source_operations:
+      - openapi/scanner-openapi.yml#blockingQuery

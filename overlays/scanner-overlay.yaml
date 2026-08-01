@@ -1,0 +1,20 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Scanner
+  version: 1.0.0
+extends: openapi/scanner-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-enriched: '2026-07-21'
+      x-api-evangelist-category: security-log-analytics
+      x-authentication: authentication/scanner-authentication.yml
+      x-conventions: conventions/scanner-conventions.yml
+      x-error-catalog: errors/scanner-problem-types.yml
+      x-mcp-server: mcp/scanner-mcp.yml
+  - target: $.tags
+    update:
+      - name: Indexes
+        x-agent-note: Read-only discovery of searchable indexes; safe for agents.
+      - name: Ad Hoc Queries
+        x-agent-note: Prefer async start_query/query_progress over blocking_query for large scans.

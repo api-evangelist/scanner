@@ -1,0 +1,16 @@
+generated: '2026-07-21'
+method: generated
+source: openapi/scanner-openapi.yml
+skills:
+  - file: scanner-threat-hunt-query.md
+    name: Run a Scanner threat-hunt query
+    api: openapi/scanner-openapi.yml
+    operations: [listIndexes, startQuery, getQueryProgress, cancelQuery, blockingQuery]
+  - file: scanner-manage-detection-rule.md
+    name: Create and manage a Scanner detection rule
+    api: openapi/scanner-openapi.yml
+    operations: [createDetectionRule, listDetectionRules, getDetectionRule, updateDetectionRule, deleteDetectionRule]
+  - file: scanner-route-alerts.md
+    name: Route Scanner alerts to Slack, PagerDuty, or a webhook
+    api: openapi/scanner-openapi.yml
+    operations: [createEventSink, listEventSinks, getEventSink, updateEventSink, deleteEventSink]

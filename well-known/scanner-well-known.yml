@@ -1,0 +1,32 @@
+generated: '2026-07-21'
+method: searched
+host: https://scanner.dev
+documents:
+  - path: /.well-known/security.txt
+    status: 200
+    content_type: text/html
+    real: false
+    note: Webflow catch-all HTML fallback, not an RFC 9116 security.txt.
+  - path: /.well-known/openid-configuration
+    status: 200
+    content_type: text/html
+    real: false
+    note: HTML fallback, not an OIDC discovery document (SSO is brokered by Stytch).
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    content_type: text/html
+    real: false
+    note: HTML fallback, not an RFC 8414 document.
+  - path: /.well-known/api-catalog
+    status: 200
+    content_type: text/html
+    real: false
+    note: HTML fallback, no RFC 9727 api-catalog published.
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    content_type: text/html
+    real: false
+    note: HTML fallback, no ai-plugin manifest.
+notes: >-
+  scanner.dev is served by Webflow, which returns a 200 HTML page for any
+  /.well-known/ path. No genuine well-known discovery documents were found.
