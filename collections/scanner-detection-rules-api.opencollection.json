@@ -1,0 +1,131 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Scanner Ad Hoc Queries Detection Rules API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Detection Rules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List detection rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{environment}.scanner.dev/v1/detection_rule",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the tenant."
+              },
+              {
+                "name": "pagination[page_size]",
+                "value": "",
+                "type": "query",
+                "description": "Maximum results per page."
+              },
+              {
+                "name": "pagination[page_token]",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for the next page."
+              }
+            ]
+          },
+          "docs": "Lists all detection rules for a tenant (summaries exclude event_sink_ids)."
+        },
+        {
+          "info": {
+            "name": "Create detection rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{environment}.scanner.dev/v1/detection_rule",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new detection rule. If active, it is immediately scheduled for backfill and execution."
+        },
+        {
+          "info": {
+            "name": "Get detection rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{environment}.scanner.dev/v1/detection_rule/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Resource identifier."
+              }
+            ]
+          },
+          "docs": "Retrieves a specific detection rule by id."
+        },
+        {
+          "info": {
+            "name": "Update detection rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{environment}.scanner.dev/v1/detection_rule/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Resource identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a detection rule. For synced rules, only enabled_state_override is modifiable."
+        },
+        {
+          "info": {
+            "name": "Delete detection rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{environment}.scanner.dev/v1/detection_rule/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Resource identifier."
+              }
+            ]
+          },
+          "docs": "Deletes a detection rule."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

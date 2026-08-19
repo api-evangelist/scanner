@@ -1,0 +1,232 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Scanner Ad Hoc Queries Lookup Tables API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Lookup Tables",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload lookup table file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{environment}.scanner.dev/v1/lookup_table_file/upload/tenant/:tenant_id",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "name",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "description",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Upload a new lookup table file for enrichment lookups."
+        },
+        {
+          "info": {
+            "name": "List lookup table files",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{environment}.scanner.dev/v1/lookup_table_file",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the tenant."
+              },
+              {
+                "name": "pagination[page_size]",
+                "value": "",
+                "type": "query",
+                "description": "Maximum results per page."
+              },
+              {
+                "name": "pagination[page_token]",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for the next page."
+              }
+            ]
+          },
+          "docs": "List all lookup table files for a tenant."
+        },
+        {
+          "info": {
+            "name": "Get lookup table file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{environment}.scanner.dev/v1/lookup_table_file/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Resource identifier."
+              }
+            ]
+          },
+          "docs": "Retrieve metadata for a specific lookup table file."
+        },
+        {
+          "info": {
+            "name": "Update lookup table file",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{environment}.scanner.dev/v1/lookup_table_file/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Resource identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update lookup table file metadata."
+        },
+        {
+          "info": {
+            "name": "Delete lookup table file",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{environment}.scanner.dev/v1/lookup_table_file/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Resource identifier."
+              }
+            ]
+          },
+          "docs": "Delete a lookup table file."
+        },
+        {
+          "info": {
+            "name": "Download lookup table file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{environment}.scanner.dev/v1/lookup_table_file/:id/data",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Resource identifier."
+              }
+            ]
+          },
+          "docs": "Download the stored lookup table file contents."
+        },
+        {
+          "info": {
+            "name": "Preview lookup table file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{environment}.scanner.dev/v1/lookup_table_file/:id/csv_preview",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Resource identifier."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of rows to preview."
+              }
+            ]
+          },
+          "docs": "Preview the first N rows of a lookup table file as CSV."
+        },
+        {
+          "info": {
+            "name": "Replace lookup table file data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{environment}.scanner.dev/v1/lookup_table_file/:id/replace_data",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Resource identifier."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "description",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Replace the contents of an existing lookup table file."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

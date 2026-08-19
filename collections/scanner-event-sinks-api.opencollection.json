@@ -1,0 +1,131 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Scanner Ad Hoc Queries Event Sinks API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Event Sinks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List event sinks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{environment}.scanner.dev/v1/event_sink",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the tenant."
+              },
+              {
+                "name": "pagination[page_size]",
+                "value": "",
+                "type": "query",
+                "description": "Maximum results per page."
+              },
+              {
+                "name": "pagination[page_token]",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for the next page."
+              }
+            ]
+          },
+          "docs": "Retrieve all event sinks for a tenant."
+        },
+        {
+          "info": {
+            "name": "Create event sink",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{environment}.scanner.dev/v1/event_sink",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new event sink (Slack, Webhook, or PagerDuty) destination for alerts."
+        },
+        {
+          "info": {
+            "name": "Get event sink",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{environment}.scanner.dev/v1/event_sink/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Resource identifier."
+              }
+            ]
+          },
+          "docs": "Retrieve a specific event sink by id."
+        },
+        {
+          "info": {
+            "name": "Update event sink",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{environment}.scanner.dev/v1/event_sink/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Resource identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify an existing event sink."
+        },
+        {
+          "info": {
+            "name": "Delete event sink",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{environment}.scanner.dev/v1/event_sink/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Resource identifier."
+              }
+            ]
+          },
+          "docs": "Remove an event sink."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

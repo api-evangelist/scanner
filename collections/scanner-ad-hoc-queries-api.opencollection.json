@@ -1,0 +1,95 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Scanner Ad Hoc Queries API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Ad Hoc Queries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Start ad hoc query",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{environment}.scanner.dev/v1/start_query",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an asynchronous ad hoc query. Returns a query-result id (qr_id) to poll."
+        },
+        {
+          "info": {
+            "name": "Get query progress",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{environment}.scanner.dev/v1/query_progress/:qr_id",
+            "params": [
+              {
+                "name": "qr_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "show_intermediate_results",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Check execution status and retrieve intermediate or final results for an ad hoc query. Poll about once per second."
+        },
+        {
+          "info": {
+            "name": "Cancel query",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{environment}.scanner.dev/v1/cancel_query/:qr_id",
+            "params": [
+              {
+                "name": "qr_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancel an active query and free resources. Idempotent."
+        },
+        {
+          "info": {
+            "name": "Blocking ad hoc query",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{environment}.scanner.dev/v1/blocking_query",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Execute a synchronous ad hoc query, holding the connection open until completion or a 300-second timeout."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

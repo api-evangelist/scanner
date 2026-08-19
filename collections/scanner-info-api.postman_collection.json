@@ -1,0 +1,215 @@
+{
+  "item": [
+    {
+      "id": "0c181ff6-92f2-44f9-9d83-e9a0ce51c5f3",
+      "name": "Info",
+      "description": {
+        "content": "Account and query-capacity metrics.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2dbfaba0-011a-4a20-8324-1bc0a6464a93",
+          "name": "Get query capacity",
+          "request": {
+            "name": "Get query capacity",
+            "description": {
+              "content": "Retrieve query capacity metrics and configuration for a tenant.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "info",
+                "query_capacity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tenant_id",
+                  "value": "<string>",
+                  "description": "(Required) Unique identifier for the tenant."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your Scanner environment identifier from Settings > API Keys.",
+                  "type": "any",
+                  "value": "{{environment}}",
+                  "key": "environment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9dfb88db-7e54-4fe0-8f94-b487a731c061",
+              "name": "Query capacity metrics.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "info",
+                    "query_capacity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Scanner environment identifier from Settings > API Keys.",
+                      "type": "any",
+                      "value": "{{environment}}",
+                      "key": "environment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"this_month_used_query_capacity_gb\": 8925.738888320648,\n  \"this_month_provisioned_query_capacity_gb\": 4479.175513710045,\n  \"this_month_on_demand_query_capacity_gb\": 8700.1008342999,\n  \"number_of_days_this_month\": 546.8621944195173,\n  \"contract_provisioned_query_capacity_gb_per_day\": 3409.417524022553\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "20496a3d-6378-4da8-865d-04dcba86cc48",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "info",
+                    "query_capacity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Scanner environment identifier from Settings > API Keys.",
+                      "type": "any",
+                      "value": "{{environment}}",
+                      "key": "environment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"invalid query\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Scanner environment identifier from Settings > API Keys.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "your-env-here",
+      "key": "environment"
+    },
+    {
+      "type": "string",
+      "value": "https://{{environment}}.scanner.dev",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "45857f1c-43ca-434c-9ac3-24af3056f11e",
+    "name": "Scanner Ad Hoc Queries Info API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Scanner is a cloud-native security data platform that indexes logs directly in Amazon S3 for fast full-text search, continuous streaming detections, and programmatic access to security data. This REST API (v1) covers searchable indexes, detection rules, event sinks, lookup tables, ad hoc queries, and account/query-capacity info. Authentication is a Scanner API key presented as an HTTP Bearer token. Most operations are tenant-scoped and require a `tenant_id`. The API base URL is environment-specific and shown in Settings > API Keys inside the Scanner app.\n\nContact Support:\n Name: Scanner",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Scanner Ad Hoc Queries Indexes API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Indexes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List indexes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{environment}.scanner.dev/v1/index",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the tenant."
+              },
+              {
+                "name": "pagination[page_size]",
+                "value": "",
+                "type": "query",
+                "description": "Maximum results per page."
+              },
+              {
+                "name": "pagination[page_token]",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for the next page."
+              }
+            ]
+          },
+          "docs": "List the searchable indexes for a tenant."
+        },
+        {
+          "info": {
+            "name": "Get index",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{environment}.scanner.dev/v1/index/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Resource identifier."
+              }
+            ]
+          },
+          "docs": "Retrieve a single searchable index by id. Non-user indexes (detection, audit, usage, legacy query-record) return 404."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

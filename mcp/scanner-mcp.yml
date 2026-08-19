@@ -7,36 +7,39 @@ server:
   name: scanner
   transport: http
   url: https://mcp.your-env-here.scanner.dev/v1/mcp
-  url_note: >-
-    Environment-specific. Replace `your-env-here` with your Scanner environment
-    from Settings > API Keys.
+  url_note: Environment-specific. Replace `your-env-here` with your Scanner environment from Settings
+    > API Keys.
   auth:
     type: bearer
     header: Authorization
-    format: "Bearer <Scanner API Key>"
+    format: Bearer <Scanner API Key>
 install:
-  claude_code: >-
-    claude mcp add --transport http scanner https://mcp.your-env-here.scanner.dev/v1/mcp
-    --header "Authorization: Bearer API_KEY_HERE"
+  claude_code: 'claude mcp add --transport http scanner https://mcp.your-env-here.scanner.dev/v1/mcp --header
+    "Authorization: Bearer API_KEY_HERE"'
   claude_desktop: Install the extension bundle, then paste your API key and MCP server URL.
-  cursor: >-
-    Add an mcpServers.scanner entry with url, transport http, and an
-    Authorization Bearer header.
+  cursor: Add an mcpServers.scanner entry with url, transport http, and an Authorization Bearer header.
   claude_agent_sdk: Configure an http MCP server dict with url and Authorization header.
 tools:
-  - name: get_scanner_context
-    description: Load a condensed Scanner query reference, available indexes, and source types.
-  - name: get_docs
-    description: Retrieve detailed documentation for a specific topic.
-  - name: get_top_columns
-    description: Discover the most frequently occurring column names for one or more indexes.
-  - name: execute_query
-    description: Run ad-hoc queries against Scanner logs.
-    source_operation: openapi/scanner-openapi.yml#startQuery
-  - name: fetch_query_results
-    description: Retrieve specific fields from cached query results.
-    source_operation: openapi/scanner-openapi.yml#getQueryProgress
-notes: >-
-  Scanner also ships pre-built MCP "Agent Skills" for SOC / detection-engineering
-  tasks (alert triage, threat hunts, IOC reputation checks, coverage reporting,
-  rule authoring) announced 2026-05-19.
+- name: get_scanner_context
+  description: Load a condensed Scanner query reference, available indexes, and source types.
+- name: get_docs
+  description: Retrieve detailed documentation for a specific topic.
+- name: get_top_columns
+  description: Discover the most frequently occurring column names for one or more indexes.
+- name: execute_query
+  description: Run ad-hoc queries against Scanner logs.
+  source_operation: openapi/scanner-openapi.yml#startQuery
+- name: fetch_query_results
+  description: Retrieve specific fields from cached query results.
+  source_operation: openapi/scanner-openapi.yml#getQueryProgress
+notes: Scanner also ships pre-built MCP "Agent Skills" for SOC / detection-engineering tasks (alert triage,
+  threat hunts, IOC reputation checks, coverage reporting, rule authoring) announced 2026-05-19.
+deployment:
+  mode: none
+  endpoint: https://mcp.your-env-here.scanner.dev/v1/mcp
+  verified: probed
+  probe: dead
+  note: the endpoint this manifest claimed did not answer; recorded as none rather than deleted so the
+    claim stays auditable
+  checked: '2026-08-12'
+  source: catalog MCP census
