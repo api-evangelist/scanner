@@ -106,6 +106,8 @@ apis:
     https://docs.scanner.dev/scanner/using-scanner-complete-feature-reference/developer-tools/api
   baseURL: https://app.scanner.dev
   tags:
+  - Index
+  tags_raw:
   - Indexes
   properties:
   - type: OpenAPI
