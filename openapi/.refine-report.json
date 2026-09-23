@@ -1,12 +1,7 @@
 {
   "provider": "scanner",
   "sources": [
-    "scanner-ad-hoc-queries-api-openapi.yml",
-    "scanner-detection-rules-api-openapi.yml",
-    "scanner-event-sinks-api-openapi.yml",
-    "scanner-indexes-api-openapi.yml",
-    "scanner-info-api-openapi.yml",
-    "scanner-lookup-tables-api-openapi.yml"
+    "_original/scanner-openapi.yml"
   ],
   "outputs": [
     "scanner-ad-hoc-queries-api-openapi.yml",
@@ -19,6 +14,17 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "scanner-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "scanner-ad-hoc-queries-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "scanner-detection-rules-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "scanner-event-sinks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "scanner-indexes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "scanner-info-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "scanner-lookup-tables-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
