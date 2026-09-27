@@ -225,36 +225,13 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    PathId:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Resource identifier.
-    PageToken:
-      name: pagination[page_token]
-      in: query
-      required: false
-      schema:
-        type: string
-      description: Cursor for the next page.
-    TenantId:
-      name: tenant_id
-      in: query
-      required: true
-      schema:
-        type: string
-      description: Unique identifier for the tenant.
-    PageSize:
-      name: pagination[page_size]
-      in: query
-      required: false
-      schema:
-        type: integer
-      description: Maximum results per page.
   schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Human-readable error description.
     Pagination:
       type: object
       properties:
@@ -280,13 +257,42 @@ components:
         updated_at:
           type: string
           format: date-time
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Human-readable error description.
+  parameters:
+    PageSize:
+      name: pagination[page_size]
+      in: query
+      required: false
+      schema:
+        type: integer
+      description: Maximum results per page.
+    TenantId:
+      name: tenant_id
+      in: query
+      required: true
+      schema:
+        type: string
+      description: Unique identifier for the tenant.
+    PageToken:
+      name: pagination[page_token]
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Cursor for the next page.
+    PathId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Resource identifier.
   responses:
+    NotFound:
+      description: Resource not found (or resolves to a non-user index).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     BadRequest:
       description: Invalid request.
       content:
@@ -295,12 +301,6 @@ components:
             $ref: '#/components/schemas/Error'
           example:
             error: invalid query
-    NotFound:
-      description: Resource not found (or resolves to a non-user index).
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

@@ -123,25 +123,6 @@ paths:
           description: Query exceeded the 300-second blocking timeout; no results returned.
 components:
   schemas:
-    QueryResult:
-      type: object
-      properties:
-        is_completed:
-          type: boolean
-        results:
-          type: object
-          properties:
-            column_ordering:
-              type: array
-              items:
-                type: string
-            rows:
-              type: array
-              items:
-                type: array
-                items: {}
-        metadata:
-          type: object
     Error:
       type: object
       properties:
@@ -177,6 +158,25 @@ components:
         scan_back_to_front:
           type: boolean
           default: true
+    QueryResult:
+      type: object
+      properties:
+        is_completed:
+          type: boolean
+        results:
+          type: object
+          properties:
+            column_ordering:
+              type: array
+              items:
+                type: string
+            rows:
+              type: array
+              items:
+                type: array
+                items: {}
+        metadata:
+          type: object
   responses:
     BadRequest:
       description: Invalid request.

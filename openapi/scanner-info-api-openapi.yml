@@ -43,6 +43,12 @@ paths:
           $ref: '#/components/responses/BadRequest'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Human-readable error description.
     QueryCapacity:
       type: object
       properties:
@@ -56,12 +62,6 @@ components:
           type: number
         contract_provisioned_query_capacity_gb_per_day:
           type: number
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Human-readable error description.
   responses:
     BadRequest:
       description: Invalid request.
