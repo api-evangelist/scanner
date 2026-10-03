@@ -142,6 +142,22 @@ components:
         error:
           type: string
           description: Human-readable error description.
+    EventSinkUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        event_sink_args:
+          type: object
+    DeletedRef:
+      type: object
+      properties:
+        id:
+          type: string
+        tenant_id:
+          type: string
     EventSinkCreate:
       type: object
       required:
@@ -159,23 +175,6 @@ components:
         event_sink_args:
           type: object
           description: Configuration for Slack, Webhook, or PagerDuty.
-    Pagination:
-      type: object
-      properties:
-        next_page_token:
-          type:
-          - string
-          - 'null'
-          description: Cursor for subsequent requests; null when exhausted.
-    EventSinkUpdate:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        event_sink_args:
-          type: object
     EventSink:
       type: object
       properties:
@@ -201,21 +200,15 @@ components:
         updated_at:
           type: string
           format: date-time
-    DeletedRef:
+    Pagination:
       type: object
       properties:
-        id:
-          type: string
-        tenant_id:
-          type: string
+        next_page_token:
+          type:
+          - string
+          - 'null'
+          description: Cursor for subsequent requests; null when exhausted.
   parameters:
-    PageSize:
-      name: pagination[page_size]
-      in: query
-      required: false
-      schema:
-        type: integer
-      description: Maximum results per page.
     TenantId:
       name: tenant_id
       in: query
@@ -223,6 +216,13 @@ components:
       schema:
         type: string
       description: Unique identifier for the tenant.
+    PageSize:
+      name: pagination[page_size]
+      in: query
+      required: false
+      schema:
+        type: integer
+      description: Maximum results per page.
     PathId:
       name: id
       in: path
@@ -238,12 +238,6 @@ components:
         type: string
       description: Cursor for the next page.
   responses:
-    NotFound:
-      description: Resource not found (or resolves to a non-user index).
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     BadRequest:
       description: Invalid request.
       content:
@@ -252,6 +246,12 @@ components:
             $ref: '#/components/schemas/Error'
           example:
             error: invalid query
+    NotFound:
+      description: Resource not found (or resolves to a non-user index).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

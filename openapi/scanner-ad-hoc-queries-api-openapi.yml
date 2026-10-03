@@ -129,6 +129,25 @@ components:
         error:
           type: string
           description: Human-readable error description.
+    QueryResult:
+      type: object
+      properties:
+        is_completed:
+          type: boolean
+        results:
+          type: object
+          properties:
+            column_ordering:
+              type: array
+              items:
+                type: string
+            rows:
+              type: array
+              items:
+                type: array
+                items: {}
+        metadata:
+          type: object
     QueryRequest:
       type: object
       required:
@@ -158,25 +177,6 @@ components:
         scan_back_to_front:
           type: boolean
           default: true
-    QueryResult:
-      type: object
-      properties:
-        is_completed:
-          type: boolean
-        results:
-          type: object
-          properties:
-            column_ordering:
-              type: array
-              items:
-                type: string
-            rows:
-              type: array
-              items:
-                type: array
-                items: {}
-        metadata:
-          type: object
   responses:
     BadRequest:
       description: Invalid request.

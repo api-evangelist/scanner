@@ -232,14 +232,6 @@ components:
         error:
           type: string
           description: Human-readable error description.
-    Pagination:
-      type: object
-      properties:
-        next_page_token:
-          type:
-          - string
-          - 'null'
-          description: Cursor for subsequent requests; null when exhausted.
     LookupTableFile:
       type: object
       properties:
@@ -257,6 +249,14 @@ components:
         updated_at:
           type: string
           format: date-time
+    Pagination:
+      type: object
+      properties:
+        next_page_token:
+          type:
+          - string
+          - 'null'
+          description: Cursor for subsequent requests; null when exhausted.
   parameters:
     PageSize:
       name: pagination[page_size]
@@ -265,6 +265,13 @@ components:
       schema:
         type: integer
       description: Maximum results per page.
+    PathId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Resource identifier.
     TenantId:
       name: tenant_id
       in: query
@@ -279,20 +286,7 @@ components:
       schema:
         type: string
       description: Cursor for the next page.
-    PathId:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Resource identifier.
   responses:
-    NotFound:
-      description: Resource not found (or resolves to a non-user index).
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     BadRequest:
       description: Invalid request.
       content:
@@ -301,6 +295,12 @@ components:
             $ref: '#/components/schemas/Error'
           example:
             error: invalid query
+    NotFound:
+      description: Resource not found (or resolves to a non-user index).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

@@ -142,30 +142,6 @@ components:
         error:
           type: string
           description: Human-readable error description.
-    AlertTemplate:
-      type: object
-      properties:
-        info:
-          type: array
-          items:
-            type: object
-            properties:
-              label:
-                type: string
-              value:
-                type: string
-              use_for_dedup:
-                type: boolean
-        actions:
-          type: array
-          items:
-            type: object
-            properties:
-              label:
-                type: string
-              value:
-                type: string
-                description: Supports {{field_name}} interpolation.
     DetectionRuleCreate:
       type: object
       required:
@@ -225,6 +201,72 @@ components:
           type: string
         alert_template:
           $ref: '#/components/schemas/AlertTemplate'
+    AlertTemplate:
+      type: object
+      properties:
+        info:
+          type: array
+          items:
+            type: object
+            properties:
+              label:
+                type: string
+              value:
+                type: string
+              use_for_dedup:
+                type: boolean
+        actions:
+          type: array
+          items:
+            type: object
+            properties:
+              label:
+                type: string
+              value:
+                type: string
+                description: Supports {{field_name}} interpolation.
+    DetectionRuleUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        time_range_s:
+          type: integer
+        run_frequency_s:
+          type: integer
+        alert_per_row:
+          type: boolean
+        enabled_state_override:
+          type: string
+          enum:
+          - Active
+          - Staging
+          - Paused
+        severity:
+          type: string
+        query_text:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        event_sink_ids:
+          type: array
+          items:
+            type: string
+        sync_key:
+          type: string
+        alert_template:
+          $ref: '#/components/schemas/AlertTemplate'
+    DeletedRef:
+      type: object
+      properties:
+        id:
+          type: string
+        tenant_id:
+          type: string
     DetectionRule:
       type: object
       properties:
@@ -274,48 +316,35 @@ components:
           - string
           - 'null'
           description: Cursor for subsequent requests; null when exhausted.
-    DetectionRuleUpdate:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        time_range_s:
-          type: integer
-        run_frequency_s:
-          type: integer
-        alert_per_row:
-          type: boolean
-        enabled_state_override:
-          type: string
-          enum:
-          - Active
-          - Staging
-          - Paused
-        severity:
-          type: string
-        query_text:
-          type: string
-        tags:
-          type: array
-          items:
-            type: string
-        event_sink_ids:
-          type: array
-          items:
-            type: string
-        sync_key:
-          type: string
-        alert_template:
-          $ref: '#/components/schemas/AlertTemplate'
-    DeletedRef:
-      type: object
-      properties:
-        id:
-          type: string
-        tenant_id:
-          type: string
+  parameters:
+    PageSize:
+      name: pagination[page_size]
+      in: query
+      required: false
+      schema:
+        type: integer
+      description: Maximum results per page.
+    PathId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Resource identifier.
+    TenantId:
+      name: tenant_id
+      in: query
+      required: true
+      schema:
+        type: string
+      description: Unique identifier for the tenant.
+    PageToken:
+      name: pagination[page_token]
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Cursor for the next page.
   responses:
     NotFound:
       description: Resource not found (or resolves to a non-user index).
@@ -331,35 +360,6 @@ components:
             $ref: '#/components/schemas/Error'
           example:
             error: invalid query
-  parameters:
-    PageSize:
-      name: pagination[page_size]
-      in: query
-      required: false
-      schema:
-        type: integer
-      description: Maximum results per page.
-    TenantId:
-      name: tenant_id
-      in: query
-      required: true
-      schema:
-        type: string
-      description: Unique identifier for the tenant.
-    PageToken:
-      name: pagination[page_token]
-      in: query
-      required: false
-      schema:
-        type: string
-      description: Cursor for the next page.
-    PathId:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Resource identifier.
   securitySchemes:
     bearerAuth:
       type: http

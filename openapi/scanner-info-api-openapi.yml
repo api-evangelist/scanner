@@ -42,6 +42,23 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
 components:
+  responses:
+    BadRequest:
+      description: Invalid request.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: invalid query
+  parameters:
+    TenantId:
+      name: tenant_id
+      in: query
+      required: true
+      schema:
+        type: string
+      description: Unique identifier for the tenant.
   schemas:
     Error:
       type: object
@@ -62,23 +79,6 @@ components:
           type: number
         contract_provisioned_query_capacity_gb_per_day:
           type: number
-  responses:
-    BadRequest:
-      description: Invalid request.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            error: invalid query
-  parameters:
-    TenantId:
-      name: tenant_id
-      in: query
-      required: true
-      schema:
-        type: string
-      description: Unique identifier for the tenant.
   securitySchemes:
     bearerAuth:
       type: http
