@@ -135,29 +135,51 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    NotFound:
+      description: Resource not found (or resolves to a non-user index).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: invalid query
+  parameters:
+    TenantId:
+      name: tenant_id
+      in: query
+      required: true
+      schema:
+        type: string
+      description: Unique identifier for the tenant.
+    PageSize:
+      name: pagination[page_size]
+      in: query
+      required: false
+      schema:
+        type: integer
+      description: Maximum results per page.
+    PathId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Resource identifier.
+    PageToken:
+      name: pagination[page_token]
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Cursor for the next page.
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Human-readable error description.
-    EventSinkUpdate:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        event_sink_args:
-          type: object
-    DeletedRef:
-      type: object
-      properties:
-        id:
-          type: string
-        tenant_id:
-          type: string
     EventSinkCreate:
       type: object
       required:
@@ -175,6 +197,22 @@ components:
         event_sink_args:
           type: object
           description: Configuration for Slack, Webhook, or PagerDuty.
+    EventSinkUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        event_sink_args:
+          type: object
+    DeletedRef:
+      type: object
+      properties:
+        id:
+          type: string
+        tenant_id:
+          type: string
     EventSink:
       type: object
       properties:
@@ -208,50 +246,12 @@ components:
           - string
           - 'null'
           description: Cursor for subsequent requests; null when exhausted.
-  parameters:
-    TenantId:
-      name: tenant_id
-      in: query
-      required: true
-      schema:
-        type: string
-      description: Unique identifier for the tenant.
-    PageSize:
-      name: pagination[page_size]
-      in: query
-      required: false
-      schema:
-        type: integer
-      description: Maximum results per page.
-    PathId:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Resource identifier.
-    PageToken:
-      name: pagination[page_token]
-      in: query
-      required: false
-      schema:
-        type: string
-      description: Cursor for the next page.
-  responses:
-    BadRequest:
-      description: Invalid request.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            error: invalid query
-    NotFound:
-      description: Resource not found (or resolves to a non-user index).
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Human-readable error description.
   securitySchemes:
     bearerAuth:
       type: http

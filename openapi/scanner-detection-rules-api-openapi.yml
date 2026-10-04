@@ -136,12 +136,30 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Error:
+    AlertTemplate:
       type: object
       properties:
-        error:
-          type: string
-          description: Human-readable error description.
+        info:
+          type: array
+          items:
+            type: object
+            properties:
+              label:
+                type: string
+              value:
+                type: string
+              use_for_dedup:
+                type: boolean
+        actions:
+          type: array
+          items:
+            type: object
+            properties:
+              label:
+                type: string
+              value:
+                type: string
+                description: Supports {{field_name}} interpolation.
     DetectionRuleCreate:
       type: object
       required:
@@ -201,30 +219,6 @@ components:
           type: string
         alert_template:
           $ref: '#/components/schemas/AlertTemplate'
-    AlertTemplate:
-      type: object
-      properties:
-        info:
-          type: array
-          items:
-            type: object
-            properties:
-              label:
-                type: string
-              value:
-                type: string
-              use_for_dedup:
-                type: boolean
-        actions:
-          type: array
-          items:
-            type: object
-            properties:
-              label:
-                type: string
-              value:
-                type: string
-                description: Supports {{field_name}} interpolation.
     DetectionRuleUpdate:
       type: object
       properties:
@@ -316,35 +310,12 @@ components:
           - string
           - 'null'
           description: Cursor for subsequent requests; null when exhausted.
-  parameters:
-    PageSize:
-      name: pagination[page_size]
-      in: query
-      required: false
-      schema:
-        type: integer
-      description: Maximum results per page.
-    PathId:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Resource identifier.
-    TenantId:
-      name: tenant_id
-      in: query
-      required: true
-      schema:
-        type: string
-      description: Unique identifier for the tenant.
-    PageToken:
-      name: pagination[page_token]
-      in: query
-      required: false
-      schema:
-        type: string
-      description: Cursor for the next page.
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Human-readable error description.
   responses:
     NotFound:
       description: Resource not found (or resolves to a non-user index).
@@ -360,6 +331,35 @@ components:
             $ref: '#/components/schemas/Error'
           example:
             error: invalid query
+  parameters:
+    TenantId:
+      name: tenant_id
+      in: query
+      required: true
+      schema:
+        type: string
+      description: Unique identifier for the tenant.
+    PageSize:
+      name: pagination[page_size]
+      in: query
+      required: false
+      schema:
+        type: integer
+      description: Maximum results per page.
+    PathId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Resource identifier.
+    PageToken:
+      name: pagination[page_token]
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Cursor for the next page.
   securitySchemes:
     bearerAuth:
       type: http
