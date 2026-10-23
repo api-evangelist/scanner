@@ -149,6 +149,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/scanner/overview
 - type: DeveloperPortal
   url: https://docs.scanner.dev/scanner/
 - type: Documentation
