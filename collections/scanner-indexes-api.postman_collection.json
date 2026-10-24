@@ -1,391 +1,349 @@
 {
+  "info": {
+    "_postman_id": "926324a2-618c-457e-8903-4af57032a47a",
+    "name": "Scanner Indexes API",
+    "description": "Scanner is a cloud-native security data platform that indexes logs directly in Amazon S3 for fast full-text search, continuous streaming detections, and programmatic access to security data.\n\nContact Support:\n Name: Scanner",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:57:53.000Z",
+    "updatedAt": "2026-10-22T01:57:54.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-926324a2-618c-457e-8903-4af57032a47a"
+  },
   "item": [
     {
-      "id": "07d2ed16-77d6-4df2-9247-328ed51baa71",
-      "name": "Indexes",
-      "description": {
-        "content": "List and retrieve searchable indexes for a tenant.",
-        "type": "text/plain"
-      },
+      "name": "v1",
       "item": [
         {
-          "id": "3b721831-cac8-4b7c-beda-ada765830c39",
-          "name": "List indexes",
-          "request": {
-            "name": "List indexes",
-            "description": {
-              "content": "List the searchable indexes for a tenant.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "index"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "tenant_id",
-                  "value": "<string>",
-                  "description": "(Required) Unique identifier for the tenant."
-                },
-                {
-                  "disabled": false,
-                  "key": "pagination[page_size]",
-                  "value": "<integer>",
-                  "description": "Maximum results per page."
-                },
-                {
-                  "disabled": false,
-                  "key": "pagination[page_token]",
-                  "value": "<string>",
-                  "description": "Cursor for the next page."
-                }
-              ],
-              "variable": [
-                {
-                  "description": "Your Scanner environment identifier from Settings > API Keys.",
-                  "type": "any",
-                  "value": "{{environment}}",
-                  "key": "environment"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "index",
+          "item": [
             {
-              "id": "67c6c099-a348-40d0-a6f7-bfebdc7aa8a3",
-              "name": "Paginated list of indexes.",
-              "originalRequest": {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "Get index",
+                  "id": "c1495281-7d31-4697-a3f7-3d189791d616",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/index/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "index",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "f68cd452-ab95-4cd6-9489-d2af88a05409",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Resource identifier."
+                        }
+                      ]
+                    },
+                    "description": "Retrieve a single searchable index by id. Non-user indexes (detection, audit, usage, legacy query-record) return 404."
+                  },
+                  "response": [
+                    {
+                      "id": "292dbad7-ce81-4913-bb49-04dc653ec43f",
+                      "name": "The index.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/index/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "index",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:57:54.000Z",
+                      "updatedAt": "2026-10-22T01:57:54.000Z",
+                      "uid": "35240-292dbad7-ce81-4913-bb49-04dc653ec43f"
+                    },
+                    {
+                      "id": "2f0f73d6-4cdd-403b-b408-e81ab990221c",
+                      "name": "Resource not found (or resolves to a non-user index).",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/index/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "index",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:57:54.000Z",
+                      "updatedAt": "2026-10-22T01:57:54.000Z",
+                      "uid": "35240-2f0f73d6-4cdd-403b-b408-e81ab990221c"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:57:54.000Z",
+                  "updatedAt": "2026-10-22T01:57:54.000Z",
+                  "uid": "35240-c1495281-7d31-4697-a3f7-3d189791d616"
+                }
+              ],
+              "id": "4b6124df-0a14-442f-9ada-6904ea903f84",
+              "createdAt": "2026-10-22T01:57:54.000Z",
+              "updatedAt": "2026-10-22T01:57:54.000Z",
+              "uid": "35240-4b6124df-0a14-442f-9ada-6904ea903f84"
+            },
+            {
+              "name": "List indexes",
+              "id": "a2992b8c-0ba1-452d-a216-7fd500aff7c5",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
                 "url": {
+                  "raw": "{{baseUrl}}/v1/index?tenant_id=<string>&pagination[page_size]=<integer>&pagination[page_token]=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "v1",
                     "index"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "(Required) Unique identifier for the tenant.",
                       "key": "tenant_id",
                       "value": "<string>"
                     },
                     {
+                      "description": "Maximum results per page.",
                       "key": "pagination[page_size]",
                       "value": "<integer>"
                     },
                     {
+                      "description": "Cursor for the next page.",
                       "key": "pagination[page_token]",
                       "value": "<string>"
                     }
-                  ],
-                  "variable": [
-                    {
-                      "description": "Your Scanner environment identifier from Settings > API Keys.",
-                      "type": "any",
-                      "value": "{{environment}}",
-                      "key": "environment"
-                    }
                   ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "List the searchable indexes for a tenant."
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": {\n    \"indexes\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\"\n      }\n    ]\n  },\n  \"pagination\": {\n    \"next_page_token\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "d62c6b03-b117-4b79-8d8a-ade87dd3ffbb",
-              "name": "Invalid request.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "index"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "id": "a5b0df5f-eb8e-43d1-8bc0-ace206d7e874",
+                  "name": "Paginated list of indexes.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/index?tenant_id=<string>&pagination[page_size]=<integer>&pagination[page_token]=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "index"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Unique identifier for the tenant.",
+                          "key": "tenant_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum results per page.",
+                          "key": "pagination[page_size]",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Cursor for the next page.",
+                          "key": "pagination[page_token]",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "tenant_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "pagination[page_size]",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "pagination[page_token]",
-                      "value": "<string>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": [
-                    {
-                      "description": "Your Scanner environment identifier from Settings > API Keys.",
-                      "type": "any",
-                      "value": "{{environment}}",
-                      "key": "environment"
-                    }
-                  ]
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"indexes\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\"\n      }\n    ]\n  },\n  \"pagination\": {\n    \"next_page_token\": \"<string,null>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:57:54.000Z",
+                  "updatedAt": "2026-10-22T01:57:54.000Z",
+                  "uid": "35240-a5b0df5f-eb8e-43d1-8bc0-ace206d7e874"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "97235d77-e7bc-465e-b9f0-653909d3d786",
+                  "name": "Invalid request.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/index?tenant_id=<string>&pagination[page_size]=<integer>&pagination[page_token]=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "index"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Unique identifier for the tenant.",
+                          "key": "tenant_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum results per page.",
+                          "key": "pagination[page_size]",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Cursor for the next page.",
+                          "key": "pagination[page_token]",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:57:54.000Z",
+                  "updatedAt": "2026-10-22T01:57:54.000Z",
+                  "uid": "35240-97235d77-e7bc-465e-b9f0-653909d3d786"
                 }
               ],
-              "body": "{\n  \"error\": \"invalid query\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T01:57:54.000Z",
+              "updatedAt": "2026-10-22T01:57:54.000Z",
+              "uid": "35240-a2992b8c-0ba1-452d-a216-7fd500aff7c5"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "4ae4ad34-4604-43ca-a5db-07e57b1fcf33",
-          "name": "Get index",
-          "request": {
-            "name": "Get index",
-            "description": {
-              "content": "Retrieve a single searchable index by id. Non-user indexes (detection, audit, usage, legacy query-record) return 404.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "index",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) Resource identifier."
-                },
-                {
-                  "description": "Your Scanner environment identifier from Settings > API Keys.",
-                  "type": "any",
-                  "value": "{{environment}}",
-                  "key": "environment"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "03e89118-4e8d-489b-b7d3-5cfb13b34aed",
-              "name": "The index.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "index",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Resource identifier."
-                    },
-                    {
-                      "description": "Your Scanner environment identifier from Settings > API Keys.",
-                      "type": "any",
-                      "value": "{{environment}}",
-                      "key": "environment"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "cc01b7c8-8eb5-42a0-8e35-90d6f838c309",
-              "name": "Resource not found (or resolves to a non-user index).",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "index",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Resource identifier."
-                    },
-                    {
-                      "description": "Your Scanner environment identifier from Settings > API Keys.",
-                      "type": "any",
-                      "value": "{{environment}}",
-                      "key": "environment"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "307641b6-5df3-4a9a-afac-bb6cbbb8b5e5",
+          "createdAt": "2026-10-22T01:57:54.000Z",
+          "updatedAt": "2026-10-22T01:57:54.000Z",
+          "uid": "35240-307641b6-5df3-4a9a-afac-bb6cbbb8b5e5"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "description": {
-        "content": "Your Scanner environment identifier from Settings > API Keys.",
-        "type": "text/plain"
-      },
-      "type": "any",
-      "value": "your-env-here",
-      "key": "environment"
-    },
-    {
-      "type": "string",
-      "value": "https://{{environment}}.scanner.dev",
-      "key": "baseUrl"
+      "id": "88509246-c365-430e-b069-aef3f976258b",
+      "createdAt": "2026-10-22T01:57:54.000Z",
+      "updatedAt": "2026-10-22T01:57:54.000Z",
+      "uid": "35240-88509246-c365-430e-b069-aef3f976258b"
     }
   ],
   "auth": {
@@ -393,17 +351,19 @@
     "bearer": [
       {
         "key": "token",
-        "value": "{{bearerToken}}"
+        "value": "{{bearerToken}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "b3a21c4e-f4b5-4c5c-9ef5-f4bc4e223d1f",
-    "name": "Scanner Ad Hoc Queries Indexes API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Scanner is a cloud-native security data platform that indexes logs directly in Amazon S3 for fast full-text search, continuous streaming detections, and programmatic access to security data. This REST API (v1) covers searchable indexes, detection rules, event sinks, lookup tables, ad hoc queries, and account/query-capacity info. Authentication is a Scanner API key presented as an HTTP Bearer token. Most operations are tenant-scoped and require a `tenant_id`. The API base URL is environment-specific and shown in Settings > API Keys inside the Scanner app.\n\nContact Support:\n Name: Scanner",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "environment",
+      "value": "your-env-here"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{environment}}.scanner.dev"
     }
-  }
+  ]
 }

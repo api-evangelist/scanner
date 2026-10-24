@@ -1,1614 +1,1440 @@
 {
+  "info": {
+    "_postman_id": "9e5425b6-cca0-4fe9-b3b2-ddb6fca07148",
+    "name": "Scanner Lookup Tables API",
+    "description": "Scanner is a cloud-native security data platform that indexes logs directly in Amazon S3 for fast full-text search, continuous streaming detections, and programmatic access to security data.\n\nContact Support:\n Name: Scanner",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:58:05.000Z",
+    "updatedAt": "2026-10-22T01:58:05.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9e5425b6-cca0-4fe9-b3b2-ddb6fca07148"
+  },
   "item": [
     {
-      "id": "fdd13b77-c792-4db6-b0a5-f65c3c18908d",
-      "name": "Lookup Tables",
-      "description": {
-        "content": "Upload, manage, and download lookup table files for enrichment.",
-        "type": "text/plain"
-      },
+      "name": "v1",
       "item": [
         {
-          "id": "ec229953-15f5-43ab-a2fa-7e1bde65737d",
-          "name": "Upload lookup table file",
-          "request": {
-            "name": "Upload lookup table file",
-            "description": {
-              "content": "Upload a new lookup table file for enrichment lookups.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "lookup_table_file",
-                "upload",
-                "tenant",
-                ":tenant_id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "tenant_id",
-                  "description": "(Required) "
-                },
-                {
-                  "description": "Your Scanner environment identifier from Settings > API Keys.",
-                  "type": "any",
-                  "value": "{{environment}}",
-                  "key": "environment"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "multipart/form-data"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "file",
-                  "type": "file",
-                  "description": "(Required) "
-                },
-                {
-                  "key": "name",
-                  "value": "<string>",
-                  "type": "text",
-                  "description": "(Required) "
-                },
-                {
-                  "key": "description",
-                  "value": "<string>",
-                  "type": "text",
-                  "description": ""
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "lookup_table_file",
+          "item": [
             {
-              "id": "dd13d321-a353-404e-bcf5-e3281e4d7e08",
-              "name": "Created lookup table file metadata.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "lookup_table_file",
-                    "upload",
-                    "tenant",
-                    ":tenant_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+              "name": "upload",
+              "item": [
+                {
+                  "name": "tenant",
+                  "item": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tenant_id",
-                      "description": "(Required) "
-                    },
-                    {
-                      "description": "Your Scanner environment identifier from Settings > API Keys.",
-                      "type": "any",
-                      "value": "{{environment}}",
-                      "key": "environment"
+                      "name": "{tenant_id}",
+                      "item": [
+                        {
+                          "name": "Upload lookup table file",
+                          "id": "c75241e7-da33-46ec-8c3a-316677b5d333",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "multipart/form-data"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "formdata",
+                              "formdata": [
+                                {
+                                  "description": "(Required) ",
+                                  "key": "file",
+                                  "type": "file",
+                                  "value": null
+                                },
+                                {
+                                  "description": "(Required) ",
+                                  "key": "name",
+                                  "value": "<string>",
+                                  "type": "text"
+                                },
+                                {
+                                  "key": "description",
+                                  "value": "<string>",
+                                  "type": "text"
+                                }
+                              ]
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/lookup_table_file/upload/tenant/:tenant_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "lookup_table_file",
+                                "upload",
+                                "tenant",
+                                ":tenant_id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "cf132427-ef4a-4f82-8e28-f180f41a1745",
+                                  "key": "tenant_id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Upload a new lookup table file for enrichment lookups."
+                          },
+                          "response": [
+                            {
+                              "id": "899b557a-07fb-4ade-b493-6d54d682f248",
+                              "name": "Created lookup table file metadata.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "multipart/form-data"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "formdata",
+                                  "formdata": [
+                                    {
+                                      "description": "(Required) ",
+                                      "key": "file",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "description": "(Required) ",
+                                      "key": "name",
+                                      "value": "<string>",
+                                      "type": "text"
+                                    },
+                                    {
+                                      "key": "description",
+                                      "value": "<string>",
+                                      "type": "text"
+                                    }
+                                  ]
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/lookup_table_file/upload/tenant/:tenant_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "lookup_table_file",
+                                    "upload",
+                                    "tenant",
+                                    ":tenant_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<string>\",\n  \"tenant_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                              "createdAt": "2026-10-22T01:58:06.000Z",
+                              "updatedAt": "2026-10-22T01:58:06.000Z",
+                              "uid": "35240-899b557a-07fb-4ade-b493-6d54d682f248"
+                            },
+                            {
+                              "id": "9385b156-df95-459c-ab3d-4962dc1b95fb",
+                              "name": "Invalid request.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "multipart/form-data"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "formdata",
+                                  "formdata": [
+                                    {
+                                      "description": "(Required) ",
+                                      "key": "file",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "description": "(Required) ",
+                                      "key": "name",
+                                      "value": "<string>",
+                                      "type": "text"
+                                    },
+                                    {
+                                      "key": "description",
+                                      "value": "<string>",
+                                      "type": "text"
+                                    }
+                                  ]
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/lookup_table_file/upload/tenant/:tenant_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "lookup_table_file",
+                                    "upload",
+                                    "tenant",
+                                    ":tenant_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenant_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-10-22T01:58:06.000Z",
+                              "updatedAt": "2026-10-22T01:58:06.000Z",
+                              "uid": "35240-9385b156-df95-459c-ab3d-4962dc1b95fb"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:58:06.000Z",
+                          "updatedAt": "2026-10-22T01:58:06.000Z",
+                          "uid": "35240-c75241e7-da33-46ec-8c3a-316677b5d333"
+                        }
+                      ],
+                      "id": "286accb3-da3a-417c-88cd-9e6a37578acf",
+                      "createdAt": "2026-10-22T01:58:06.000Z",
+                      "updatedAt": "2026-10-22T01:58:06.000Z",
+                      "uid": "35240-286accb3-da3a-417c-88cd-9e6a37578acf"
                     }
-                  ]
+                  ],
+                  "id": "03d4634a-108b-4422-a22b-27ed1795ec33",
+                  "createdAt": "2026-10-22T01:58:06.000Z",
+                  "updatedAt": "2026-10-22T01:58:06.000Z",
+                  "uid": "35240-03d4634a-108b-4422-a22b-27ed1795ec33"
+                }
+              ],
+              "id": "1c30f700-b13a-44f7-9c70-ae29702dfcfa",
+              "createdAt": "2026-10-22T01:58:06.000Z",
+              "updatedAt": "2026-10-22T01:58:06.000Z",
+              "uid": "35240-1c30f700-b13a-44f7-9c70-ae29702dfcfa"
+            },
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "data",
+                  "item": [
+                    {
+                      "name": "Download lookup table file",
+                      "id": "f67d8186-488c-4a99-b5b0-1375c6f943ea",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/octet-stream"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/lookup_table_file/:id/data",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "lookup_table_file",
+                            ":id",
+                            "data"
+                          ],
+                          "variable": [
+                            {
+                              "id": "df6d69fc-9659-4c84-90e0-a84c408722bb",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) Resource identifier."
+                            }
+                          ]
+                        },
+                        "description": "Download the stored lookup table file contents."
+                      },
+                      "response": [
+                        {
+                          "id": "e60571ea-2ea7-4f6c-b722-5c44b6f613f1",
+                          "name": "The stored file contents.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/octet-stream"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/lookup_table_file/:id/data",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "lookup_table_file",
+                                ":id",
+                                "data"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/octet-stream"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<binary>",
+                          "createdAt": "2026-10-22T01:58:06.000Z",
+                          "updatedAt": "2026-10-22T01:58:06.000Z",
+                          "uid": "35240-e60571ea-2ea7-4f6c-b722-5c44b6f613f1"
+                        },
+                        {
+                          "id": "35f2701e-f5e5-4495-80b8-28c18973794b",
+                          "name": "Resource not found (or resolves to a non-user index).",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/lookup_table_file/:id/data",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "lookup_table_file",
+                                ":id",
+                                "data"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T01:58:06.000Z",
+                          "updatedAt": "2026-10-22T01:58:06.000Z",
+                          "uid": "35240-35f2701e-f5e5-4495-80b8-28c18973794b"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:58:06.000Z",
+                      "updatedAt": "2026-10-22T01:58:06.000Z",
+                      "uid": "35240-f67d8186-488c-4a99-b5b0-1375c6f943ea"
+                    }
+                  ],
+                  "id": "a08a606f-155c-4d0d-a2d1-e2136e601e32",
+                  "createdAt": "2026-10-22T01:58:06.000Z",
+                  "updatedAt": "2026-10-22T01:58:06.000Z",
+                  "uid": "35240-a08a606f-155c-4d0d-a2d1-e2136e601e32"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                {
+                  "name": "csv_preview",
+                  "item": [
+                    {
+                      "name": "Preview lookup table file",
+                      "id": "c935f647-eb05-4cb2-93e1-a4c624c50e8e",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "text/csv"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/lookup_table_file/:id/csv_preview?limit=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "lookup_table_file",
+                            ":id",
+                            "csv_preview"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Number of rows to preview.",
+                              "key": "limit",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "7fd51083-cb69-4742-aebc-b61cee1d2dc3",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) Resource identifier."
+                            }
+                          ]
+                        },
+                        "description": "Preview the first N rows of a lookup table file as CSV."
+                      },
+                      "response": [
+                        {
+                          "id": "1dad7efe-33db-4e0d-a09a-87b9353220d8",
+                          "name": "CSV preview.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "text/csv"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/lookup_table_file/:id/csv_preview?limit=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "lookup_table_file",
+                                ":id",
+                                "csv_preview"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Number of rows to preview.",
+                                  "key": "limit",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "text/csv"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<string>",
+                          "createdAt": "2026-10-22T01:58:06.000Z",
+                          "updatedAt": "2026-10-22T01:58:06.000Z",
+                          "uid": "35240-1dad7efe-33db-4e0d-a09a-87b9353220d8"
+                        },
+                        {
+                          "id": "16b986ca-3c55-4b4e-9557-533eb0a33550",
+                          "name": "Resource not found (or resolves to a non-user index).",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/lookup_table_file/:id/csv_preview?limit=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "lookup_table_file",
+                                ":id",
+                                "csv_preview"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Number of rows to preview.",
+                                  "key": "limit",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T01:58:06.000Z",
+                          "updatedAt": "2026-10-22T01:58:06.000Z",
+                          "uid": "35240-16b986ca-3c55-4b4e-9557-533eb0a33550"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:58:06.000Z",
+                      "updatedAt": "2026-10-22T01:58:06.000Z",
+                      "uid": "35240-c935f647-eb05-4cb2-93e1-a4c624c50e8e"
+                    }
+                  ],
+                  "id": "e19df179-8e6d-44fe-b2f2-767781cc4ea1",
+                  "createdAt": "2026-10-22T01:58:06.000Z",
+                  "updatedAt": "2026-10-22T01:58:06.000Z",
+                  "uid": "35240-e19df179-8e6d-44fe-b2f2-767781cc4ea1"
+                },
+                {
+                  "name": "replace_data",
+                  "item": [
+                    {
+                      "name": "Replace lookup table file data",
+                      "id": "71eaa25c-fac6-4d59-8e12-6296ef9668aa",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "description": "(Required) ",
+                              "key": "file",
+                              "type": "file",
+                              "value": null
+                            },
+                            {
+                              "key": "description",
+                              "value": "<string>",
+                              "type": "text"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/lookup_table_file/:id/replace_data",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "lookup_table_file",
+                            ":id",
+                            "replace_data"
+                          ],
+                          "variable": [
+                            {
+                              "id": "bc0b872e-0321-4323-8caa-925a5046a51b",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) Resource identifier."
+                            }
+                          ]
+                        },
+                        "description": "Replace the contents of an existing lookup table file."
+                      },
+                      "response": [
+                        {
+                          "id": "b3902b77-32e6-4caf-9324-c1e81021db75",
+                          "name": "Updated lookup table file metadata.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "multipart/form-data"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "formdata",
+                              "formdata": [
+                                {
+                                  "description": "(Required) ",
+                                  "key": "file",
+                                  "type": "file"
+                                },
+                                {
+                                  "key": "description",
+                                  "value": "<string>",
+                                  "type": "text"
+                                }
+                              ]
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/lookup_table_file/:id/replace_data",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "lookup_table_file",
+                                ":id",
+                                "replace_data"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"tenant_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-10-22T01:58:06.000Z",
+                          "updatedAt": "2026-10-22T01:58:06.000Z",
+                          "uid": "35240-b3902b77-32e6-4caf-9324-c1e81021db75"
+                        },
+                        {
+                          "id": "7ce3bb45-a0da-4594-a789-6f78b5b892ce",
+                          "name": "Resource not found (or resolves to a non-user index).",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "multipart/form-data"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "formdata",
+                              "formdata": [
+                                {
+                                  "description": "(Required) ",
+                                  "key": "file",
+                                  "type": "file"
+                                },
+                                {
+                                  "key": "description",
+                                  "value": "<string>",
+                                  "type": "text"
+                                }
+                              ]
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/lookup_table_file/:id/replace_data",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "lookup_table_file",
+                                ":id",
+                                "replace_data"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T01:58:06.000Z",
+                          "updatedAt": "2026-10-22T01:58:06.000Z",
+                          "uid": "35240-7ce3bb45-a0da-4594-a789-6f78b5b892ce"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:58:06.000Z",
+                      "updatedAt": "2026-10-22T01:58:06.000Z",
+                      "uid": "35240-71eaa25c-fac6-4d59-8e12-6296ef9668aa"
+                    }
+                  ],
+                  "id": "72f282ca-ba17-4e55-bb48-903e6e6b9ba8",
+                  "createdAt": "2026-10-22T01:58:06.000Z",
+                  "updatedAt": "2026-10-22T01:58:06.000Z",
+                  "uid": "35240-72f282ca-ba17-4e55-bb48-903e6e6b9ba8"
+                },
+                {
+                  "name": "Get lookup table file",
+                  "id": "f1954cf4-7cce-488f-9c20-425929ea5b38",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/lookup_table_file/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "lookup_table_file",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a8cc60d2-7586-43dd-93b6-b2f36e771924",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Resource identifier."
+                        }
+                      ]
+                    },
+                    "description": "Retrieve metadata for a specific lookup table file."
+                  },
+                  "response": [
+                    {
+                      "id": "1f8f4c7a-2fbb-4180-81da-9d545c8288c8",
+                      "name": "The lookup table file metadata.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/lookup_table_file/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "lookup_table_file",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"tenant_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-10-22T01:58:06.000Z",
+                      "updatedAt": "2026-10-22T01:58:06.000Z",
+                      "uid": "35240-1f8f4c7a-2fbb-4180-81da-9d545c8288c8"
+                    },
+                    {
+                      "id": "b8f7146c-595d-472d-b786-14622696a731",
+                      "name": "Resource not found (or resolves to a non-user index).",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/lookup_table_file/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "lookup_table_file",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:58:06.000Z",
+                      "updatedAt": "2026-10-22T01:58:06.000Z",
+                      "uid": "35240-b8f7146c-595d-472d-b786-14622696a731"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:58:06.000Z",
+                  "updatedAt": "2026-10-22T01:58:06.000Z",
+                  "uid": "35240-f1954cf4-7cce-488f-9c20-425929ea5b38"
+                },
+                {
+                  "name": "Update lookup table file",
+                  "id": "f7c7c686-ccd3-4913-b7e3-278fa11ac5db",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/lookup_table_file/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "lookup_table_file",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "87775739-d7d5-41d2-9ba6-276eef0dbc56",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Resource identifier."
+                        }
+                      ]
+                    },
+                    "description": "Update lookup table file metadata."
+                  },
+                  "response": [
+                    {
+                      "id": "888a237a-c950-4fad-b017-67f3a9f166a4",
+                      "name": "Updated lookup table file metadata.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/lookup_table_file/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "lookup_table_file",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"tenant_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-10-22T01:58:06.000Z",
+                      "updatedAt": "2026-10-22T01:58:06.000Z",
+                      "uid": "35240-888a237a-c950-4fad-b017-67f3a9f166a4"
+                    },
+                    {
+                      "id": "54c3b10c-ecfb-46be-aaed-6a3d8005f766",
+                      "name": "Resource not found (or resolves to a non-user index).",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/lookup_table_file/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "lookup_table_file",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:58:06.000Z",
+                      "updatedAt": "2026-10-22T01:58:06.000Z",
+                      "uid": "35240-54c3b10c-ecfb-46be-aaed-6a3d8005f766"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:58:06.000Z",
+                  "updatedAt": "2026-10-22T01:58:06.000Z",
+                  "uid": "35240-f7c7c686-ccd3-4913-b7e3-278fa11ac5db"
+                },
+                {
+                  "name": "Delete lookup table file",
+                  "id": "48900dbe-fa68-4773-a13f-331947c7aabc",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/lookup_table_file/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "lookup_table_file",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "47cb47ed-d449-4096-93df-30a82a6d0c5e",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Resource identifier."
+                        }
+                      ]
+                    },
+                    "description": "Delete a lookup table file."
+                  },
+                  "response": [
+                    {
+                      "id": "4ac5ee94-653a-4f8b-84f8-99ec49630309",
+                      "name": "Deleted.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/lookup_table_file/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "lookup_table_file",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:58:06.000Z",
+                      "updatedAt": "2026-10-22T01:58:06.000Z",
+                      "uid": "35240-4ac5ee94-653a-4f8b-84f8-99ec49630309"
+                    },
+                    {
+                      "id": "ffb4a1d9-3fed-47aa-96b8-ca516c794cbc",
+                      "name": "Resource not found (or resolves to a non-user index).",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/lookup_table_file/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "lookup_table_file",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:58:06.000Z",
+                      "updatedAt": "2026-10-22T01:58:06.000Z",
+                      "uid": "35240-ffb4a1d9-3fed-47aa-96b8-ca516c794cbc"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:58:06.000Z",
+                  "updatedAt": "2026-10-22T01:58:06.000Z",
+                  "uid": "35240-48900dbe-fa68-4773-a13f-331947c7aabc"
+                }
+              ],
+              "id": "b7adde79-8f84-413e-a06c-e82e3accf6fc",
+              "createdAt": "2026-10-22T01:58:06.000Z",
+              "updatedAt": "2026-10-22T01:58:06.000Z",
+              "uid": "35240-b7adde79-8f84-413e-a06c-e82e3accf6fc"
+            },
+            {
+              "name": "List lookup table files",
+              "id": "e6e78008-5d06-413c-b9f5-28d31c0740db",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
-                "body": {
-                  "mode": "formdata",
-                  "formdata": [
-                    {
-                      "description": {
-                        "content": "(Required) ",
-                        "type": "text/plain"
-                      },
-                      "key": "file",
-                      "value": "<binary>",
-                      "type": "text"
-                    },
-                    {
-                      "description": {
-                        "content": "(Required) ",
-                        "type": "text/plain"
-                      },
-                      "key": "name",
-                      "value": "<string>",
-                      "type": "text"
-                    },
-                    {
-                      "description": {
-                        "content": "",
-                        "type": "text/plain"
-                      },
-                      "key": "description",
-                      "value": "<string>",
-                      "type": "text"
-                    }
-                  ]
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"tenant_id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"created_at\": \"1961-04-10T12:09:32.126Z\",\n  \"updated_at\": \"2006-03-10T17:44:19.914Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "f45de0ed-6d03-45c7-90e1-dbbd902dc616",
-              "name": "Invalid request.",
-              "originalRequest": {
                 "url": {
-                  "path": [
-                    "v1",
-                    "lookup_table_file",
-                    "upload",
-                    "tenant",
-                    ":tenant_id"
-                  ],
+                  "raw": "{{baseUrl}}/v1/lookup_table_file?tenant_id=<string>&pagination[page_size]=<integer>&pagination[page_token]=<string>",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tenant_id",
-                      "description": "(Required) "
-                    },
-                    {
-                      "description": "Your Scanner environment identifier from Settings > API Keys.",
-                      "type": "any",
-                      "value": "{{environment}}",
-                      "key": "environment"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "formdata",
-                  "formdata": [
-                    {
-                      "description": {
-                        "content": "(Required) ",
-                        "type": "text/plain"
-                      },
-                      "key": "file",
-                      "value": "<binary>",
-                      "type": "text"
-                    },
-                    {
-                      "description": {
-                        "content": "(Required) ",
-                        "type": "text/plain"
-                      },
-                      "key": "name",
-                      "value": "<string>",
-                      "type": "text"
-                    },
-                    {
-                      "description": {
-                        "content": "",
-                        "type": "text/plain"
-                      },
-                      "key": "description",
-                      "value": "<string>",
-                      "type": "text"
-                    }
-                  ]
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"invalid query\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "b0a4b451-d841-4562-b48d-1741df8b7bba",
-          "name": "List lookup table files",
-          "request": {
-            "name": "List lookup table files",
-            "description": {
-              "content": "List all lookup table files for a tenant.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "lookup_table_file"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "tenant_id",
-                  "value": "<string>",
-                  "description": "(Required) Unique identifier for the tenant."
-                },
-                {
-                  "disabled": false,
-                  "key": "pagination[page_size]",
-                  "value": "<integer>",
-                  "description": "Maximum results per page."
-                },
-                {
-                  "disabled": false,
-                  "key": "pagination[page_token]",
-                  "value": "<string>",
-                  "description": "Cursor for the next page."
-                }
-              ],
-              "variable": [
-                {
-                  "description": "Your Scanner environment identifier from Settings > API Keys.",
-                  "type": "any",
-                  "value": "{{environment}}",
-                  "key": "environment"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "b6166853-66d0-4d02-bbc1-8f312fa4c87d",
-              "name": "Paginated list of lookup table files.",
-              "originalRequest": {
-                "url": {
                   "path": [
                     "v1",
                     "lookup_table_file"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "(Required) Unique identifier for the tenant.",
                       "key": "tenant_id",
                       "value": "<string>"
                     },
                     {
+                      "description": "Maximum results per page.",
                       "key": "pagination[page_size]",
                       "value": "<integer>"
                     },
                     {
+                      "description": "Cursor for the next page.",
                       "key": "pagination[page_token]",
                       "value": "<string>"
                     }
-                  ],
-                  "variable": [
-                    {
-                      "description": "Your Scanner environment identifier from Settings > API Keys.",
-                      "type": "any",
-                      "value": "{{environment}}",
-                      "key": "environment"
-                    }
                   ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "List all lookup table files for a tenant."
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": {\n    \"lookup_table_files\": [\n      {\n        \"id\": \"string\",\n        \"tenant_id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"created_at\": \"2012-01-24T12:57:31.149Z\",\n        \"updated_at\": \"1961-09-23T00:15:36.929Z\"\n      },\n      {\n        \"id\": \"string\",\n        \"tenant_id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"created_at\": \"1976-08-26T00:34:53.824Z\",\n        \"updated_at\": \"1972-12-12T03:52:22.809Z\"\n      }\n    ]\n  },\n  \"pagination\": {\n    \"next_page_token\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "4ddbeef7-e243-4770-a354-7eac40d853fe",
-              "name": "Invalid request.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "lookup_table_file"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "tenant_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "pagination[page_size]",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "pagination[page_token]",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "description": "Your Scanner environment identifier from Settings > API Keys.",
-                      "type": "any",
-                      "value": "{{environment}}",
-                      "key": "environment"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"invalid query\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "d273215c-a909-4bd1-8a14-f8fca2039f84",
-          "name": "Get lookup table file",
-          "request": {
-            "name": "Get lookup table file",
-            "description": {
-              "content": "Retrieve metadata for a specific lookup table file.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "lookup_table_file",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) Resource identifier."
-                },
-                {
-                  "description": "Your Scanner environment identifier from Settings > API Keys.",
-                  "type": "any",
-                  "value": "{{environment}}",
-                  "key": "environment"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "3191724e-dcc1-4f45-8d5f-9b94154d1721",
-              "name": "The lookup table file metadata.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "lookup_table_file",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Resource identifier."
-                    },
-                    {
-                      "description": "Your Scanner environment identifier from Settings > API Keys.",
-                      "type": "any",
-                      "value": "{{environment}}",
-                      "key": "environment"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"tenant_id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"created_at\": \"1961-04-10T12:09:32.126Z\",\n  \"updated_at\": \"2006-03-10T17:44:19.914Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "8efae5d2-ba92-48e2-b5db-291db69e3c5f",
-              "name": "Resource not found (or resolves to a non-user index).",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "lookup_table_file",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Resource identifier."
-                    },
-                    {
-                      "description": "Your Scanner environment identifier from Settings > API Keys.",
-                      "type": "any",
-                      "value": "{{environment}}",
-                      "key": "environment"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "356576e0-90a2-4cc3-9036-fb4ff05437e0",
-          "name": "Update lookup table file",
-          "request": {
-            "name": "Update lookup table file",
-            "description": {
-              "content": "Update lookup table file metadata.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "lookup_table_file",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) Resource identifier."
-                },
-                {
-                  "description": "Your Scanner environment identifier from Settings > API Keys.",
-                  "type": "any",
-                  "value": "{{environment}}",
-                  "key": "environment"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"description\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "010c1e45-5f7e-42c4-bbdd-2ddeb82a868b",
-              "name": "Updated lookup table file metadata.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "lookup_table_file",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Resource identifier."
-                    },
-                    {
-                      "description": "Your Scanner environment identifier from Settings > API Keys.",
-                      "type": "any",
-                      "value": "{{environment}}",
-                      "key": "environment"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"description\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"tenant_id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"created_at\": \"1961-04-10T12:09:32.126Z\",\n  \"updated_at\": \"2006-03-10T17:44:19.914Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "e6489cdb-4581-4398-986b-5c751bb61078",
-              "name": "Resource not found (or resolves to a non-user index).",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "lookup_table_file",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Resource identifier."
-                    },
-                    {
-                      "description": "Your Scanner environment identifier from Settings > API Keys.",
-                      "type": "any",
-                      "value": "{{environment}}",
-                      "key": "environment"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"description\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "1c42a1a8-aaeb-478c-b733-0223f448a32c",
-          "name": "Delete lookup table file",
-          "request": {
-            "name": "Delete lookup table file",
-            "description": {
-              "content": "Delete a lookup table file.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "lookup_table_file",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) Resource identifier."
-                },
-                {
-                  "description": "Your Scanner environment identifier from Settings > API Keys.",
-                  "type": "any",
-                  "value": "{{environment}}",
-                  "key": "environment"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "ebef4fa6-0e54-4ec7-a5c5-0fab68bf120b",
-              "name": "Deleted.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "lookup_table_file",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Resource identifier."
-                    },
-                    {
-                      "description": "Your Scanner environment identifier from Settings > API Keys.",
-                      "type": "any",
-                      "value": "{{environment}}",
-                      "key": "environment"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "1cd58f24-c772-44d4-94f2-813bfbce9594",
-              "name": "Resource not found (or resolves to a non-user index).",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "lookup_table_file",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Resource identifier."
-                    },
-                    {
-                      "description": "Your Scanner environment identifier from Settings > API Keys.",
-                      "type": "any",
-                      "value": "{{environment}}",
-                      "key": "environment"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "7ed75b7d-e7ac-4f57-ae55-2ef34a6b191e",
-          "name": "Download lookup table file",
-          "request": {
-            "name": "Download lookup table file",
-            "description": {
-              "content": "Download the stored lookup table file contents.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "lookup_table_file",
-                ":id",
-                "data"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) Resource identifier."
-                },
-                {
-                  "description": "Your Scanner environment identifier from Settings > API Keys.",
-                  "type": "any",
-                  "value": "{{environment}}",
-                  "key": "environment"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/octet-stream"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "a3b11427-cbaa-4356-8345-a1ec13f7bc75",
-              "name": "The stored file contents.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "lookup_table_file",
-                    ":id",
-                    "data"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Resource identifier."
-                    },
-                    {
-                      "description": "Your Scanner environment identifier from Settings > API Keys.",
-                      "type": "any",
-                      "value": "{{environment}}",
-                      "key": "environment"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/octet-stream"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/octet-stream"
-                }
-              ],
-              "body": "string",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "15920178-4d47-4b64-b816-de3b38799911",
-              "name": "Resource not found (or resolves to a non-user index).",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "lookup_table_file",
-                    ":id",
-                    "data"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Resource identifier."
-                    },
-                    {
-                      "description": "Your Scanner environment identifier from Settings > API Keys.",
-                      "type": "any",
-                      "value": "{{environment}}",
-                      "key": "environment"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "8ab369f9-5ea2-44cc-837f-d2d746135211",
-          "name": "Preview lookup table file",
-          "request": {
-            "name": "Preview lookup table file",
-            "description": {
-              "content": "Preview the first N rows of a lookup table file as CSV.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "lookup_table_file",
-                ":id",
-                "csv_preview"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "<integer>",
-                  "description": "(Required) Number of rows to preview."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) Resource identifier."
-                },
-                {
-                  "description": "Your Scanner environment identifier from Settings > API Keys.",
-                  "type": "any",
-                  "value": "{{environment}}",
-                  "key": "environment"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "text/csv"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "1e5eb896-e41f-4bf9-ae76-1fb551e1ae88",
-              "name": "CSV preview.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "lookup_table_file",
-                    ":id",
-                    "csv_preview"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "limit",
-                      "value": "<integer>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Resource identifier."
-                    },
-                    {
-                      "description": "Your Scanner environment identifier from Settings > API Keys.",
-                      "type": "any",
-                      "value": "{{environment}}",
-                      "key": "environment"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "text/csv"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/csv"
-                }
-              ],
-              "body": "string",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "1abd8e60-858d-4a1e-b633-c0e5c56f9dce",
-              "name": "Resource not found (or resolves to a non-user index).",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "lookup_table_file",
-                    ":id",
-                    "csv_preview"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "limit",
-                      "value": "<integer>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Resource identifier."
-                    },
-                    {
-                      "description": "Your Scanner environment identifier from Settings > API Keys.",
-                      "type": "any",
-                      "value": "{{environment}}",
-                      "key": "environment"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "ac4476ed-c46b-4aca-b051-c7a73af23f24",
-          "name": "Replace lookup table file data",
-          "request": {
-            "name": "Replace lookup table file data",
-            "description": {
-              "content": "Replace the contents of an existing lookup table file.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "lookup_table_file",
-                ":id",
-                "replace_data"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) Resource identifier."
-                },
-                {
-                  "description": "Your Scanner environment identifier from Settings > API Keys.",
-                  "type": "any",
-                  "value": "{{environment}}",
-                  "key": "environment"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "multipart/form-data"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "file",
-                  "type": "file",
-                  "description": "(Required) "
-                },
-                {
-                  "key": "description",
-                  "value": "<string>",
-                  "type": "text",
-                  "description": ""
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "2a39e7d0-763f-4dea-a99a-8a51a29bb38d",
-              "name": "Updated lookup table file metadata.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "lookup_table_file",
-                    ":id",
-                    "replace_data"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Resource identifier."
-                    },
-                    {
-                      "description": "Your Scanner environment identifier from Settings > API Keys.",
-                      "type": "any",
-                      "value": "{{environment}}",
-                      "key": "environment"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "formdata",
-                  "formdata": [
-                    {
-                      "description": {
-                        "content": "(Required) ",
-                        "type": "text/plain"
+                  "id": "ef253122-f4cb-4690-bc56-8ad857f43988",
+                  "name": "Paginated list of lookup table files.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
                       },
-                      "key": "file",
-                      "value": "<binary>",
-                      "type": "text"
-                    },
-                    {
-                      "description": {
-                        "content": "",
-                        "type": "text/plain"
-                      },
-                      "key": "description",
-                      "value": "<string>",
-                      "type": "text"
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/lookup_table_file?tenant_id=<string>&pagination[page_size]=<integer>&pagination[page_token]=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "lookup_table_file"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Unique identifier for the tenant.",
+                          "key": "tenant_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum results per page.",
+                          "key": "pagination[page_size]",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Cursor for the next page.",
+                          "key": "pagination[page_token]",
+                          "value": "<string>"
+                        }
+                      ]
                     }
-                  ]
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"tenant_id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"created_at\": \"1961-04-10T12:09:32.126Z\",\n  \"updated_at\": \"2006-03-10T17:44:19.914Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "69a2cc57-4dc6-4f29-86f9-6361c9027681",
-              "name": "Resource not found (or resolves to a non-user index).",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "lookup_table_file",
-                    ":id",
-                    "replace_data"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Resource identifier."
-                    },
-                    {
-                      "description": "Your Scanner environment identifier from Settings > API Keys.",
-                      "type": "any",
-                      "value": "{{environment}}",
-                      "key": "environment"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "formdata",
-                  "formdata": [
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "description": {
-                        "content": "(Required) ",
-                        "type": "text/plain"
-                      },
-                      "key": "file",
-                      "value": "<binary>",
-                      "type": "text"
-                    },
-                    {
-                      "description": {
-                        "content": "",
-                        "type": "text/plain"
-                      },
-                      "key": "description",
-                      "value": "<string>",
-                      "type": "text"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
-                  ]
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"lookup_table_files\": [\n      {\n        \"id\": \"<string>\",\n        \"tenant_id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"tenant_id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\"\n      }\n    ]\n  },\n  \"pagination\": {\n    \"next_page_token\": \"<string,null>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:58:06.000Z",
+                  "updatedAt": "2026-10-22T01:58:06.000Z",
+                  "uid": "35240-ef253122-f4cb-4690-bc56-8ad857f43988"
+                },
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "9674a2ea-8846-484c-870b-03e04f885b8e",
+                  "name": "Invalid request.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/lookup_table_file?tenant_id=<string>&pagination[page_size]=<integer>&pagination[page_token]=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "lookup_table_file"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Unique identifier for the tenant.",
+                          "key": "tenant_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum results per page.",
+                          "key": "pagination[page_size]",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Cursor for the next page.",
+                          "key": "pagination[page_token]",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:58:06.000Z",
+                  "updatedAt": "2026-10-22T01:58:06.000Z",
+                  "uid": "35240-9674a2ea-8846-484c-870b-03e04f885b8e"
                 }
               ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T01:58:06.000Z",
+              "updatedAt": "2026-10-22T01:58:06.000Z",
+              "uid": "35240-e6e78008-5d06-413c-b9f5-28d31c0740db"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "9c64d234-da80-42ee-a360-9a182ebc98f4",
+          "createdAt": "2026-10-22T01:58:06.000Z",
+          "updatedAt": "2026-10-22T01:58:06.000Z",
+          "uid": "35240-9c64d234-da80-42ee-a360-9a182ebc98f4"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "description": {
-        "content": "Your Scanner environment identifier from Settings > API Keys.",
-        "type": "text/plain"
-      },
-      "type": "any",
-      "value": "your-env-here",
-      "key": "environment"
-    },
-    {
-      "type": "string",
-      "value": "https://{{environment}}.scanner.dev",
-      "key": "baseUrl"
+      "id": "bda29068-3766-4f36-99d0-d775fb975030",
+      "createdAt": "2026-10-22T01:58:06.000Z",
+      "updatedAt": "2026-10-22T01:58:06.000Z",
+      "uid": "35240-bda29068-3766-4f36-99d0-d775fb975030"
     }
   ],
   "auth": {
@@ -1616,17 +1442,19 @@
     "bearer": [
       {
         "key": "token",
-        "value": "{{bearerToken}}"
+        "value": "{{bearerToken}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "8f81634e-64b3-46f5-96ea-e41a90ad111a",
-    "name": "Scanner Ad Hoc Queries Lookup Tables API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Scanner is a cloud-native security data platform that indexes logs directly in Amazon S3 for fast full-text search, continuous streaming detections, and programmatic access to security data. This REST API (v1) covers searchable indexes, detection rules, event sinks, lookup tables, ad hoc queries, and account/query-capacity info. Authentication is a Scanner API key presented as an HTTP Bearer token. Most operations are tenant-scoped and require a `tenant_id`. The API base URL is environment-specific and shown in Settings > API Keys inside the Scanner app.\n\nContact Support:\n Name: Scanner",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "environment",
+      "value": "your-env-here"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{environment}}.scanner.dev"
     }
-  }
+  ]
 }

@@ -1,999 +1,892 @@
 {
+  "info": {
+    "_postman_id": "d2b24c9e-eb34-410d-881c-4e0cac49bcfc",
+    "name": "Scanner Event Sinks API",
+    "description": "Scanner is a cloud-native security data platform that indexes logs directly in Amazon S3 for fast full-text search, continuous streaming detections, and programmatic access to security data.\n\nContact Support:\n Name: Scanner",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:57:48.000Z",
+    "updatedAt": "2026-10-22T01:57:48.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d2b24c9e-eb34-410d-881c-4e0cac49bcfc"
+  },
   "item": [
     {
-      "id": "30b8d897-103a-4f77-934b-5fc8d6bcf0ec",
-      "name": "Event Sinks",
-      "description": {
-        "content": "Manage alert destinations (Slack, Webhook, PagerDuty).",
-        "type": "text/plain"
-      },
+      "name": "v1",
       "item": [
         {
-          "id": "80d4f768-8d49-4711-84d2-f6ec2c07f947",
-          "name": "Create event sink",
-          "request": {
-            "name": "Create event sink",
-            "description": {
-              "content": "Create a new event sink (Slack, Webhook, or PagerDuty) destination for alerts.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "event_sink"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "description": "Your Scanner environment identifier from Settings > API Keys.",
-                  "type": "any",
-                  "value": "{{environment}}",
-                  "key": "environment"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"tenant_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"event_sink_args\": \"<object>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "event_sink",
+          "item": [
             {
-              "id": "c8838f92-e679-4faa-81d1-f61d563a2292",
-              "name": "Created event sink.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "event_sink"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "Get event sink",
+                  "id": "3484df3c-821c-4dbf-bb5d-f8fb9ae52e63",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/event_sink/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "event_sink",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "e839ef97-1255-4e95-a981-4f6dc7412212",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Resource identifier."
+                        }
+                      ]
+                    },
+                    "description": "Retrieve a specific event sink by id."
+                  },
+                  "response": [
                     {
-                      "description": "Your Scanner environment identifier from Settings > API Keys.",
-                      "type": "any",
-                      "value": "{{environment}}",
-                      "key": "environment"
+                      "id": "496faeae-732d-4ecb-8f59-8c7f88a400a1",
+                      "name": "The event sink.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/event_sink/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "event_sink",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"tenant_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"event_sink_type\": \"Webhook\",\n  \"configuration\": {},\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-10-22T01:57:49.000Z",
+                      "updatedAt": "2026-10-22T01:57:49.000Z",
+                      "uid": "35240-496faeae-732d-4ecb-8f59-8c7f88a400a1"
+                    },
+                    {
+                      "id": "a4295a68-abaa-4612-8886-4e83a51f1db3",
+                      "name": "Resource not found (or resolves to a non-user index).",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/event_sink/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "event_sink",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:57:49.000Z",
+                      "updatedAt": "2026-10-22T01:57:49.000Z",
+                      "uid": "35240-a4295a68-abaa-4612-8886-4e83a51f1db3"
                     }
-                  ]
+                  ],
+                  "createdAt": "2026-10-22T01:57:49.000Z",
+                  "updatedAt": "2026-10-22T01:57:49.000Z",
+                  "uid": "35240-3484df3c-821c-4dbf-bb5d-f8fb9ae52e63"
                 },
+                {
+                  "name": "Update event sink",
+                  "id": "2f0ef69c-1208-4c53-bd25-b22edaa72b4e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"event_sink_args\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/event_sink/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "event_sink",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "de12abe0-1c1d-49a8-9f26-9c02dafc04c5",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Resource identifier."
+                        }
+                      ]
+                    },
+                    "description": "Modify an existing event sink."
+                  },
+                  "response": [
+                    {
+                      "id": "77daae5f-51c8-42ff-8f04-e113236a4973",
+                      "name": "Updated event sink.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"event_sink_args\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/event_sink/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "event_sink",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"tenant_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"event_sink_type\": \"Webhook\",\n  \"configuration\": {},\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-10-22T01:57:49.000Z",
+                      "updatedAt": "2026-10-22T01:57:49.000Z",
+                      "uid": "35240-77daae5f-51c8-42ff-8f04-e113236a4973"
+                    },
+                    {
+                      "id": "ee055232-7128-4b58-982e-323ea5dac6e7",
+                      "name": "Invalid request.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"event_sink_args\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/event_sink/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "event_sink",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:57:49.000Z",
+                      "updatedAt": "2026-10-22T01:57:49.000Z",
+                      "uid": "35240-ee055232-7128-4b58-982e-323ea5dac6e7"
+                    },
+                    {
+                      "id": "4fd385f0-acb7-4bcf-9a71-22af6854b9c2",
+                      "name": "Resource not found (or resolves to a non-user index).",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"event_sink_args\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/event_sink/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "event_sink",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:57:49.000Z",
+                      "updatedAt": "2026-10-22T01:57:49.000Z",
+                      "uid": "35240-4fd385f0-acb7-4bcf-9a71-22af6854b9c2"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:57:49.000Z",
+                  "updatedAt": "2026-10-22T01:57:49.000Z",
+                  "uid": "35240-2f0ef69c-1208-4c53-bd25-b22edaa72b4e"
+                },
+                {
+                  "name": "Delete event sink",
+                  "id": "e7be0585-3217-42b0-8f7e-2d9ee74f5379",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/event_sink/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "event_sink",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "01d5b3be-da23-4272-9e84-e5abc4e360fa",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Resource identifier."
+                        }
+                      ]
+                    },
+                    "description": "Remove an event sink."
+                  },
+                  "response": [
+                    {
+                      "id": "314cfc49-0881-4cc0-9b64-962fefcb46aa",
+                      "name": "Id and tenant_id of the deleted event sink.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/event_sink/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "event_sink",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"tenant_id\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:57:49.000Z",
+                      "updatedAt": "2026-10-22T01:57:49.000Z",
+                      "uid": "35240-314cfc49-0881-4cc0-9b64-962fefcb46aa"
+                    },
+                    {
+                      "id": "729d39e7-d717-491b-880f-73f9619bb3f9",
+                      "name": "Resource not found (or resolves to a non-user index).",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/event_sink/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "event_sink",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:57:49.000Z",
+                      "updatedAt": "2026-10-22T01:57:49.000Z",
+                      "uid": "35240-729d39e7-d717-491b-880f-73f9619bb3f9"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:57:49.000Z",
+                  "updatedAt": "2026-10-22T01:57:49.000Z",
+                  "uid": "35240-e7be0585-3217-42b0-8f7e-2d9ee74f5379"
+                }
+              ],
+              "id": "4273f675-483c-403e-a244-c767b0bbc17f",
+              "createdAt": "2026-10-22T01:57:49.000Z",
+              "updatedAt": "2026-10-22T01:57:49.000Z",
+              "uid": "35240-4273f675-483c-403e-a244-c767b0bbc17f"
+            },
+            {
+              "name": "Create event sink",
+              "id": "70ac0f5b-9d4c-4008-bf4b-3ffc339d1c86",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"tenant_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"event_sink_args\": \"<object>\"\n}",
+                  "raw": "{\n  \"tenant_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"event_sink_args\": {}\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"tenant_id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"event_sink_type\": \"Slack\",\n  \"configuration\": {},\n  \"created_at\": \"1998-12-25T10:36:59.956Z\",\n  \"updated_at\": \"1985-04-05T06:26:18.049Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "460c34e1-15aa-43b9-a98b-2bd5fa2309d0",
-              "name": "Invalid request.",
-              "originalRequest": {
+                },
                 "url": {
-                  "path": [
-                    "v1",
-                    "event_sink"
-                  ],
+                  "raw": "{{baseUrl}}/v1/event_sink",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "Your Scanner environment identifier from Settings > API Keys.",
-                      "type": "any",
-                      "value": "{{environment}}",
-                      "key": "environment"
-                    }
+                  "path": [
+                    "v1",
+                    "event_sink"
                   ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                "description": "Create a new event sink (Slack, Webhook, or PagerDuty) destination for alerts."
+              },
+              "response": [
+                {
+                  "id": "988a2624-2a94-43ec-ae78-d066590600c2",
+                  "name": "Created event sink.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"tenant_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"event_sink_args\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/event_sink",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "event_sink"
+                      ]
+                    }
                   },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"tenant_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"event_sink_type\": \"Webhook\",\n  \"configuration\": {},\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-10-22T01:57:49.000Z",
+                  "updatedAt": "2026-10-22T01:57:49.000Z",
+                  "uid": "35240-988a2624-2a94-43ec-ae78-d066590600c2"
+                },
+                {
+                  "id": "89bcb5d5-ca40-428e-9863-a094348f2b35",
+                  "name": "Invalid request.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"tenant_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"event_sink_args\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/event_sink",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "event_sink"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:57:49.000Z",
+                  "updatedAt": "2026-10-22T01:57:49.000Z",
+                  "uid": "35240-89bcb5d5-ca40-428e-9863-a094348f2b35"
+                }
+              ],
+              "createdAt": "2026-10-22T01:57:49.000Z",
+              "updatedAt": "2026-10-22T01:57:49.000Z",
+              "uid": "35240-70ac0f5b-9d4c-4008-bf4b-3ffc339d1c86"
+            },
+            {
+              "name": "List event sinks",
+              "id": "bd28c35c-9370-4783-a235-e657c62140a4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"tenant_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"event_sink_args\": \"<object>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"invalid query\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "cff96723-f970-4944-b938-970263b6f089",
-          "name": "List event sinks",
-          "request": {
-            "name": "List event sinks",
-            "description": {
-              "content": "Retrieve all event sinks for a tenant.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "event_sink"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "tenant_id",
-                  "value": "<string>",
-                  "description": "(Required) Unique identifier for the tenant."
-                },
-                {
-                  "disabled": false,
-                  "key": "pagination[page_size]",
-                  "value": "<integer>",
-                  "description": "Maximum results per page."
-                },
-                {
-                  "disabled": false,
-                  "key": "pagination[page_token]",
-                  "value": "<string>",
-                  "description": "Cursor for the next page."
-                }
-              ],
-              "variable": [
-                {
-                  "description": "Your Scanner environment identifier from Settings > API Keys.",
-                  "type": "any",
-                  "value": "{{environment}}",
-                  "key": "environment"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "cd20e90e-5fdb-40a9-97d7-dcc926c3a01a",
-              "name": "Paginated list of event sinks.",
-              "originalRequest": {
                 "url": {
+                  "raw": "{{baseUrl}}/v1/event_sink?tenant_id=<string>&pagination[page_size]=<integer>&pagination[page_token]=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "v1",
                     "event_sink"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
                   ],
                   "query": [
                     {
+                      "description": "(Required) Unique identifier for the tenant.",
                       "key": "tenant_id",
                       "value": "<string>"
                     },
                     {
+                      "description": "Maximum results per page.",
                       "key": "pagination[page_size]",
                       "value": "<integer>"
                     },
                     {
+                      "description": "Cursor for the next page.",
                       "key": "pagination[page_token]",
                       "value": "<string>"
                     }
-                  ],
-                  "variable": [
-                    {
-                      "description": "Your Scanner environment identifier from Settings > API Keys.",
-                      "type": "any",
-                      "value": "{{environment}}",
-                      "key": "environment"
-                    }
                   ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "Retrieve all event sinks for a tenant."
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": {\n    \"event_sinks\": [\n      {\n        \"id\": \"string\",\n        \"tenant_id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"event_sink_type\": \"Webhook\",\n        \"configuration\": {},\n        \"created_at\": \"1952-11-20T18:08:07.983Z\",\n        \"updated_at\": \"2011-07-18T13:27:23.300Z\"\n      },\n      {\n        \"id\": \"string\",\n        \"tenant_id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"event_sink_type\": \"Webhook\",\n        \"configuration\": {},\n        \"created_at\": \"1987-10-16T11:25:46.156Z\",\n        \"updated_at\": \"1951-11-08T01:02:13.393Z\"\n      }\n    ]\n  },\n  \"pagination\": {\n    \"next_page_token\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "00289da6-10be-4969-9f0a-ddc70035b8fc",
-              "name": "Invalid request.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "event_sink"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "id": "85ff6462-dd2f-4a8a-8163-8a411141f9d1",
+                  "name": "Paginated list of event sinks.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/event_sink?tenant_id=<string>&pagination[page_size]=<integer>&pagination[page_token]=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "event_sink"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Unique identifier for the tenant.",
+                          "key": "tenant_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum results per page.",
+                          "key": "pagination[page_size]",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Cursor for the next page.",
+                          "key": "pagination[page_token]",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "tenant_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "pagination[page_size]",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "pagination[page_token]",
-                      "value": "<string>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": [
-                    {
-                      "description": "Your Scanner environment identifier from Settings > API Keys.",
-                      "type": "any",
-                      "value": "{{environment}}",
-                      "key": "environment"
-                    }
-                  ]
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"event_sinks\": [\n      {\n        \"id\": \"<string>\",\n        \"tenant_id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"event_sink_type\": \"PagerDuty\",\n        \"configuration\": {},\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"tenant_id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"event_sink_type\": \"Webhook\",\n        \"configuration\": {},\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\"\n      }\n    ]\n  },\n  \"pagination\": {\n    \"next_page_token\": \"<string,null>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:57:49.000Z",
+                  "updatedAt": "2026-10-22T01:57:49.000Z",
+                  "uid": "35240-85ff6462-dd2f-4a8a-8163-8a411141f9d1"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "6464dc19-2c79-467b-922b-d9ea7093c5e0",
+                  "name": "Invalid request.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/event_sink?tenant_id=<string>&pagination[page_size]=<integer>&pagination[page_token]=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "event_sink"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Unique identifier for the tenant.",
+                          "key": "tenant_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum results per page.",
+                          "key": "pagination[page_size]",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Cursor for the next page.",
+                          "key": "pagination[page_token]",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:57:49.000Z",
+                  "updatedAt": "2026-10-22T01:57:49.000Z",
+                  "uid": "35240-6464dc19-2c79-467b-922b-d9ea7093c5e0"
                 }
               ],
-              "body": "{\n  \"error\": \"invalid query\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T01:57:49.000Z",
+              "updatedAt": "2026-10-22T01:57:49.000Z",
+              "uid": "35240-bd28c35c-9370-4783-a235-e657c62140a4"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "70a3991a-bce2-44e5-bad3-1c38217c37ed",
-          "name": "Get event sink",
-          "request": {
-            "name": "Get event sink",
-            "description": {
-              "content": "Retrieve a specific event sink by id.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "event_sink",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) Resource identifier."
-                },
-                {
-                  "description": "Your Scanner environment identifier from Settings > API Keys.",
-                  "type": "any",
-                  "value": "{{environment}}",
-                  "key": "environment"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "67a96dbd-f9db-482c-a923-0368c8388d65",
-              "name": "The event sink.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "event_sink",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Resource identifier."
-                    },
-                    {
-                      "description": "Your Scanner environment identifier from Settings > API Keys.",
-                      "type": "any",
-                      "value": "{{environment}}",
-                      "key": "environment"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"tenant_id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"event_sink_type\": \"Slack\",\n  \"configuration\": {},\n  \"created_at\": \"1998-12-25T10:36:59.956Z\",\n  \"updated_at\": \"1985-04-05T06:26:18.049Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "fbb09d19-db6c-4a88-b098-27f2d119c3e9",
-              "name": "Resource not found (or resolves to a non-user index).",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "event_sink",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Resource identifier."
-                    },
-                    {
-                      "description": "Your Scanner environment identifier from Settings > API Keys.",
-                      "type": "any",
-                      "value": "{{environment}}",
-                      "key": "environment"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "6ec901e6-59ce-4b71-9c29-2931cb17441c",
-          "name": "Update event sink",
-          "request": {
-            "name": "Update event sink",
-            "description": {
-              "content": "Modify an existing event sink.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "event_sink",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) Resource identifier."
-                },
-                {
-                  "description": "Your Scanner environment identifier from Settings > API Keys.",
-                  "type": "any",
-                  "value": "{{environment}}",
-                  "key": "environment"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"event_sink_args\": \"<object>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "f418a45a-1ad8-489c-ba67-7efd2f71104d",
-              "name": "Updated event sink.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "event_sink",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Resource identifier."
-                    },
-                    {
-                      "description": "Your Scanner environment identifier from Settings > API Keys.",
-                      "type": "any",
-                      "value": "{{environment}}",
-                      "key": "environment"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"event_sink_args\": \"<object>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"tenant_id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"event_sink_type\": \"Slack\",\n  \"configuration\": {},\n  \"created_at\": \"1998-12-25T10:36:59.956Z\",\n  \"updated_at\": \"1985-04-05T06:26:18.049Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "ef6ceffb-e42a-483b-888e-c6e6d267768d",
-              "name": "Invalid request.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "event_sink",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Resource identifier."
-                    },
-                    {
-                      "description": "Your Scanner environment identifier from Settings > API Keys.",
-                      "type": "any",
-                      "value": "{{environment}}",
-                      "key": "environment"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"event_sink_args\": \"<object>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"invalid query\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "27283193-e916-44e2-88d9-a3e4e7e07f48",
-              "name": "Resource not found (or resolves to a non-user index).",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "event_sink",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Resource identifier."
-                    },
-                    {
-                      "description": "Your Scanner environment identifier from Settings > API Keys.",
-                      "type": "any",
-                      "value": "{{environment}}",
-                      "key": "environment"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"event_sink_args\": \"<object>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "39389faf-72ed-4e4b-99aa-b3b8f01c6ace",
-          "name": "Delete event sink",
-          "request": {
-            "name": "Delete event sink",
-            "description": {
-              "content": "Remove an event sink.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "event_sink",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) Resource identifier."
-                },
-                {
-                  "description": "Your Scanner environment identifier from Settings > API Keys.",
-                  "type": "any",
-                  "value": "{{environment}}",
-                  "key": "environment"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "79c9798e-aa62-4f24-b8e5-a428f509350c",
-              "name": "Id and tenant_id of the deleted event sink.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "event_sink",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Resource identifier."
-                    },
-                    {
-                      "description": "Your Scanner environment identifier from Settings > API Keys.",
-                      "type": "any",
-                      "value": "{{environment}}",
-                      "key": "environment"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"tenant_id\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "d18d37ec-f701-4517-bd02-907b099a8c68",
-              "name": "Resource not found (or resolves to a non-user index).",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "event_sink",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Resource identifier."
-                    },
-                    {
-                      "description": "Your Scanner environment identifier from Settings > API Keys.",
-                      "type": "any",
-                      "value": "{{environment}}",
-                      "key": "environment"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "9dc0e39d-ab02-4a74-9143-b1690ed78336",
+          "createdAt": "2026-10-22T01:57:49.000Z",
+          "updatedAt": "2026-10-22T01:57:49.000Z",
+          "uid": "35240-9dc0e39d-ab02-4a74-9143-b1690ed78336"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "description": {
-        "content": "Your Scanner environment identifier from Settings > API Keys.",
-        "type": "text/plain"
-      },
-      "type": "any",
-      "value": "your-env-here",
-      "key": "environment"
-    },
-    {
-      "type": "string",
-      "value": "https://{{environment}}.scanner.dev",
-      "key": "baseUrl"
+      "id": "52119063-3e20-4572-9d32-46bf15583c9c",
+      "createdAt": "2026-10-22T01:57:49.000Z",
+      "updatedAt": "2026-10-22T01:57:49.000Z",
+      "uid": "35240-52119063-3e20-4572-9d32-46bf15583c9c"
     }
   ],
   "auth": {
@@ -1001,17 +894,19 @@
     "bearer": [
       {
         "key": "token",
-        "value": "{{bearerToken}}"
+        "value": "{{bearerToken}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "84d5f531-470b-40eb-9018-876659e3b50e",
-    "name": "Scanner Ad Hoc Queries Event Sinks API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Scanner is a cloud-native security data platform that indexes logs directly in Amazon S3 for fast full-text search, continuous streaming detections, and programmatic access to security data. This REST API (v1) covers searchable indexes, detection rules, event sinks, lookup tables, ad hoc queries, and account/query-capacity info. Authentication is a Scanner API key presented as an HTTP Bearer token. Most operations are tenant-scoped and require a `tenant_id`. The API base URL is environment-specific and shown in Settings > API Keys inside the Scanner app.\n\nContact Support:\n Name: Scanner",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "environment",
+      "value": "your-env-here"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{environment}}.scanner.dev"
     }
-  }
+  ]
 }

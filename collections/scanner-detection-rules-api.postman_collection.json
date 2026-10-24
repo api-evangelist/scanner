@@ -1,999 +1,892 @@
 {
+  "info": {
+    "_postman_id": "afa54119-a9db-4bfd-b495-bbe30f2184e2",
+    "name": "Scanner Detection Rules API",
+    "description": "Scanner is a cloud-native security data platform that indexes logs directly in Amazon S3 for fast full-text search, continuous streaming detections, and programmatic access to security data.\n\nContact Support:\n Name: Scanner",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:57:43.000Z",
+    "updatedAt": "2026-10-22T01:57:43.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-afa54119-a9db-4bfd-b495-bbe30f2184e2"
+  },
   "item": [
     {
-      "id": "75426e1b-e89b-4d3b-aa5f-b9829f53b828",
-      "name": "Detection Rules",
-      "description": {
-        "content": "Create, list, update, and delete streaming detection rules.",
-        "type": "text/plain"
-      },
+      "name": "v1",
       "item": [
         {
-          "id": "6e7277d9-10ef-4b35-81b6-a7c4f43478e2",
-          "name": "Create detection rule",
-          "request": {
-            "name": "Create detection rule",
-            "description": {
-              "content": "Creates a new detection rule. If active, it is immediately scheduled for backfill and execution.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "detection_rule"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "description": "Your Scanner environment identifier from Settings > API Keys.",
-                  "type": "any",
-                  "value": "{{environment}}",
-                  "key": "environment"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"tenant_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"time_range_s\": \"<integer>\",\n  \"run_frequency_s\": \"<integer>\",\n  \"enabled_state_override\": \"<string>\",\n  \"severity\": \"<string>\",\n  \"query_text\": \"<string>\",\n  \"event_sink_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"alert_per_row\": false,\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sync_key\": \"<string>\",\n  \"alert_template\": {\n    \"info\": [\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\",\n        \"use_for_dedup\": \"<boolean>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\",\n        \"use_for_dedup\": \"<boolean>\"\n      }\n    ],\n    \"actions\": [\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ]\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "detection_rule",
+          "item": [
             {
-              "id": "01021e9a-4a57-46e7-9e7c-c64f34726f95",
-              "name": "Created detection rule.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "detection_rule"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "Get detection rule",
+                  "id": "502ac076-beb5-43b5-8d38-da394e08b9f6",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/detection_rule/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "detection_rule",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "83ec955e-1526-47d0-9674-3b8e01788090",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Resource identifier."
+                        }
+                      ]
+                    },
+                    "description": "Retrieves a specific detection rule by id."
+                  },
+                  "response": [
                     {
-                      "description": "Your Scanner environment identifier from Settings > API Keys.",
-                      "type": "any",
-                      "value": "{{environment}}",
-                      "key": "environment"
+                      "id": "651969db-6064-4bd9-8ff3-8ad39c686ca9",
+                      "name": "The detection rule.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/detection_rule/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "detection_rule",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"tenant_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"time_range_s\": \"<integer>\",\n  \"run_frequency_s\": \"<integer>\",\n  \"enabled_state_override\": \"<string>\",\n  \"severity\": \"<string>\",\n  \"query_text\": \"<string>\",\n  \"event_sink_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"alert_per_row\": \"<boolean>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"prepared_query_id\": \"<string>\",\n  \"alert_template\": {\n    \"info\": [\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\",\n        \"use_for_dedup\": \"<boolean>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\",\n        \"use_for_dedup\": \"<boolean>\"\n      }\n    ],\n    \"actions\": [\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ]\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-10-22T01:57:43.000Z",
+                      "updatedAt": "2026-10-22T01:57:43.000Z",
+                      "uid": "35240-651969db-6064-4bd9-8ff3-8ad39c686ca9"
+                    },
+                    {
+                      "id": "f1401098-c04c-4bf1-b129-ece8d6722b39",
+                      "name": "Resource not found (or resolves to a non-user index).",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/detection_rule/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "detection_rule",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:57:43.000Z",
+                      "updatedAt": "2026-10-22T01:57:43.000Z",
+                      "uid": "35240-f1401098-c04c-4bf1-b129-ece8d6722b39"
                     }
-                  ]
+                  ],
+                  "createdAt": "2026-10-22T01:57:43.000Z",
+                  "updatedAt": "2026-10-22T01:57:43.000Z",
+                  "uid": "35240-502ac076-beb5-43b5-8d38-da394e08b9f6"
                 },
+                {
+                  "name": "Update detection rule",
+                  "id": "440313cc-36cb-4540-96b8-4b5de062a225",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"time_range_s\": \"<integer>\",\n  \"run_frequency_s\": \"<integer>\",\n  \"alert_per_row\": \"<boolean>\",\n  \"enabled_state_override\": \"Active\",\n  \"severity\": \"<string>\",\n  \"query_text\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"event_sink_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sync_key\": \"<string>\",\n  \"alert_template\": {\n    \"info\": [\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\",\n        \"use_for_dedup\": \"<boolean>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\",\n        \"use_for_dedup\": \"<boolean>\"\n      }\n    ],\n    \"actions\": [\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/detection_rule/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "detection_rule",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "579e0f24-4925-4200-9d60-2c844fa2729e",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Resource identifier."
+                        }
+                      ]
+                    },
+                    "description": "Updates a detection rule. For synced rules, only enabled_state_override is modifiable."
+                  },
+                  "response": [
+                    {
+                      "id": "457e6aca-7494-481e-826c-0a07f77e30a0",
+                      "name": "Updated detection rule.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"time_range_s\": \"<integer>\",\n  \"run_frequency_s\": \"<integer>\",\n  \"alert_per_row\": \"<boolean>\",\n  \"enabled_state_override\": \"Active\",\n  \"severity\": \"<string>\",\n  \"query_text\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"event_sink_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sync_key\": \"<string>\",\n  \"alert_template\": {\n    \"info\": [\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\",\n        \"use_for_dedup\": \"<boolean>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\",\n        \"use_for_dedup\": \"<boolean>\"\n      }\n    ],\n    \"actions\": [\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ]\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/detection_rule/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "detection_rule",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"tenant_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"time_range_s\": \"<integer>\",\n  \"run_frequency_s\": \"<integer>\",\n  \"enabled_state_override\": \"<string>\",\n  \"severity\": \"<string>\",\n  \"query_text\": \"<string>\",\n  \"event_sink_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"alert_per_row\": \"<boolean>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"prepared_query_id\": \"<string>\",\n  \"alert_template\": {\n    \"info\": [\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\",\n        \"use_for_dedup\": \"<boolean>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\",\n        \"use_for_dedup\": \"<boolean>\"\n      }\n    ],\n    \"actions\": [\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ]\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-10-22T01:57:43.000Z",
+                      "updatedAt": "2026-10-22T01:57:43.000Z",
+                      "uid": "35240-457e6aca-7494-481e-826c-0a07f77e30a0"
+                    },
+                    {
+                      "id": "163ca1d2-789b-4df5-abe7-7ce9ca255046",
+                      "name": "Invalid request.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"time_range_s\": \"<integer>\",\n  \"run_frequency_s\": \"<integer>\",\n  \"alert_per_row\": \"<boolean>\",\n  \"enabled_state_override\": \"Active\",\n  \"severity\": \"<string>\",\n  \"query_text\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"event_sink_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sync_key\": \"<string>\",\n  \"alert_template\": {\n    \"info\": [\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\",\n        \"use_for_dedup\": \"<boolean>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\",\n        \"use_for_dedup\": \"<boolean>\"\n      }\n    ],\n    \"actions\": [\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ]\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/detection_rule/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "detection_rule",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:57:43.000Z",
+                      "updatedAt": "2026-10-22T01:57:43.000Z",
+                      "uid": "35240-163ca1d2-789b-4df5-abe7-7ce9ca255046"
+                    },
+                    {
+                      "id": "45735d03-9187-4188-b51e-62e00e2b2a81",
+                      "name": "Resource not found (or resolves to a non-user index).",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"time_range_s\": \"<integer>\",\n  \"run_frequency_s\": \"<integer>\",\n  \"alert_per_row\": \"<boolean>\",\n  \"enabled_state_override\": \"Active\",\n  \"severity\": \"<string>\",\n  \"query_text\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"event_sink_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sync_key\": \"<string>\",\n  \"alert_template\": {\n    \"info\": [\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\",\n        \"use_for_dedup\": \"<boolean>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\",\n        \"use_for_dedup\": \"<boolean>\"\n      }\n    ],\n    \"actions\": [\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ]\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/detection_rule/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "detection_rule",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:57:43.000Z",
+                      "updatedAt": "2026-10-22T01:57:43.000Z",
+                      "uid": "35240-45735d03-9187-4188-b51e-62e00e2b2a81"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:57:43.000Z",
+                  "updatedAt": "2026-10-22T01:57:43.000Z",
+                  "uid": "35240-440313cc-36cb-4540-96b8-4b5de062a225"
+                },
+                {
+                  "name": "Delete detection rule",
+                  "id": "174b5c4d-46c6-4db6-9e50-de635ef84ee7",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/detection_rule/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "detection_rule",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "83c7e22d-fb78-4356-9566-8ce6bc39f9b1",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Resource identifier."
+                        }
+                      ]
+                    },
+                    "description": "Deletes a detection rule."
+                  },
+                  "response": [
+                    {
+                      "id": "b3cbb728-40f7-44c7-bc7d-f02e97ac1815",
+                      "name": "Id and tenant_id of the deleted rule.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/detection_rule/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "detection_rule",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"tenant_id\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:57:43.000Z",
+                      "updatedAt": "2026-10-22T01:57:43.000Z",
+                      "uid": "35240-b3cbb728-40f7-44c7-bc7d-f02e97ac1815"
+                    },
+                    {
+                      "id": "8edf4eb9-1663-49c7-9140-eb422b7b2c79",
+                      "name": "Resource not found (or resolves to a non-user index).",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/detection_rule/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "detection_rule",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:57:43.000Z",
+                      "updatedAt": "2026-10-22T01:57:43.000Z",
+                      "uid": "35240-8edf4eb9-1663-49c7-9140-eb422b7b2c79"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:57:43.000Z",
+                  "updatedAt": "2026-10-22T01:57:43.000Z",
+                  "uid": "35240-174b5c4d-46c6-4db6-9e50-de635ef84ee7"
+                }
+              ],
+              "id": "30b65229-78b8-4e47-b057-c388ffe3f78a",
+              "createdAt": "2026-10-22T01:57:43.000Z",
+              "updatedAt": "2026-10-22T01:57:43.000Z",
+              "uid": "35240-30b65229-78b8-4e47-b057-c388ffe3f78a"
+            },
+            {
+              "name": "Create detection rule",
+              "id": "943791e7-947a-47c5-97bf-c03b05ff67d7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"tenant_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"time_range_s\": \"<integer>\",\n  \"run_frequency_s\": \"<integer>\",\n  \"enabled_state_override\": \"<string>\",\n  \"severity\": \"<string>\",\n  \"query_text\": \"<string>\",\n  \"event_sink_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"alert_per_row\": false,\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sync_key\": \"<string>\",\n  \"alert_template\": {\n    \"info\": [\n      {\n        \"label\": \"string\",\n        \"value\": \"string\",\n        \"use_for_dedup\": false\n      },\n      {\n        \"label\": \"string\",\n        \"value\": \"string\",\n        \"use_for_dedup\": false\n      }\n    ],\n    \"actions\": [\n      {\n        \"label\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"label\": \"string\",\n        \"value\": \"string\"\n      }\n    ]\n  }\n}",
+                  "raw": "{\n  \"tenant_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"time_range_s\": \"<integer>\",\n  \"run_frequency_s\": \"<integer>\",\n  \"enabled_state_override\": \"Active\",\n  \"severity\": \"Unknown\",\n  \"query_text\": \"<string>\",\n  \"event_sink_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"alert_per_row\": false,\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sync_key\": \"<string>\",\n  \"alert_template\": {\n    \"info\": [\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\",\n        \"use_for_dedup\": \"<boolean>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\",\n        \"use_for_dedup\": \"<boolean>\"\n      }\n    ],\n    \"actions\": [\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ]\n  }\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"tenant_id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"time_range_s\": 6446,\n  \"run_frequency_s\": 4829,\n  \"enabled_state_override\": \"string\",\n  \"severity\": \"string\",\n  \"query_text\": \"string\",\n  \"event_sink_ids\": [\n    \"string\",\n    \"string\"\n  ],\n  \"alert_per_row\": true,\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"prepared_query_id\": \"string\",\n  \"alert_template\": {\n    \"info\": [\n      {\n        \"label\": \"string\",\n        \"value\": \"string\",\n        \"use_for_dedup\": true\n      },\n      {\n        \"label\": \"string\",\n        \"value\": \"string\",\n        \"use_for_dedup\": false\n      }\n    ],\n    \"actions\": [\n      {\n        \"label\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"label\": \"string\",\n        \"value\": \"string\"\n      }\n    ]\n  },\n  \"created_at\": \"1957-02-02T12:12:28.076Z\",\n  \"updated_at\": \"1960-05-17T14:31:40.928Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "bc80d996-81fa-403f-bc97-083beafe84ce",
-              "name": "Invalid request.",
-              "originalRequest": {
+                },
                 "url": {
-                  "path": [
-                    "v1",
-                    "detection_rule"
-                  ],
+                  "raw": "{{baseUrl}}/v1/detection_rule",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "Your Scanner environment identifier from Settings > API Keys.",
-                      "type": "any",
-                      "value": "{{environment}}",
-                      "key": "environment"
-                    }
+                  "path": [
+                    "v1",
+                    "detection_rule"
                   ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                "description": "Creates a new detection rule. If active, it is immediately scheduled for backfill and execution."
+              },
+              "response": [
+                {
+                  "id": "8aaf3256-deab-4477-844e-71644a6fc367",
+                  "name": "Created detection rule.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"tenant_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"time_range_s\": \"<integer>\",\n  \"run_frequency_s\": \"<integer>\",\n  \"enabled_state_override\": \"Active\",\n  \"severity\": \"Unknown\",\n  \"query_text\": \"<string>\",\n  \"event_sink_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"alert_per_row\": false,\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sync_key\": \"<string>\",\n  \"alert_template\": {\n    \"info\": [\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\",\n        \"use_for_dedup\": \"<boolean>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\",\n        \"use_for_dedup\": \"<boolean>\"\n      }\n    ],\n    \"actions\": [\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/detection_rule",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "detection_rule"
+                      ]
+                    }
                   },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"tenant_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"time_range_s\": \"<integer>\",\n  \"run_frequency_s\": \"<integer>\",\n  \"enabled_state_override\": \"<string>\",\n  \"severity\": \"<string>\",\n  \"query_text\": \"<string>\",\n  \"event_sink_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"alert_per_row\": \"<boolean>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"prepared_query_id\": \"<string>\",\n  \"alert_template\": {\n    \"info\": [\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\",\n        \"use_for_dedup\": \"<boolean>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\",\n        \"use_for_dedup\": \"<boolean>\"\n      }\n    ],\n    \"actions\": [\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ]\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-10-22T01:57:43.000Z",
+                  "updatedAt": "2026-10-22T01:57:43.000Z",
+                  "uid": "35240-8aaf3256-deab-4477-844e-71644a6fc367"
+                },
+                {
+                  "id": "23b63156-6e9a-4259-84f3-d512a94e1225",
+                  "name": "Invalid request.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"tenant_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"time_range_s\": \"<integer>\",\n  \"run_frequency_s\": \"<integer>\",\n  \"enabled_state_override\": \"Active\",\n  \"severity\": \"Unknown\",\n  \"query_text\": \"<string>\",\n  \"event_sink_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"alert_per_row\": false,\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sync_key\": \"<string>\",\n  \"alert_template\": {\n    \"info\": [\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\",\n        \"use_for_dedup\": \"<boolean>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\",\n        \"use_for_dedup\": \"<boolean>\"\n      }\n    ],\n    \"actions\": [\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/detection_rule",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "detection_rule"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:57:43.000Z",
+                  "updatedAt": "2026-10-22T01:57:43.000Z",
+                  "uid": "35240-23b63156-6e9a-4259-84f3-d512a94e1225"
+                }
+              ],
+              "createdAt": "2026-10-22T01:57:43.000Z",
+              "updatedAt": "2026-10-22T01:57:43.000Z",
+              "uid": "35240-943791e7-947a-47c5-97bf-c03b05ff67d7"
+            },
+            {
+              "name": "List detection rules",
+              "id": "965f696e-58cd-4dfc-9d83-0a5b16e88e95",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"tenant_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"time_range_s\": \"<integer>\",\n  \"run_frequency_s\": \"<integer>\",\n  \"enabled_state_override\": \"<string>\",\n  \"severity\": \"<string>\",\n  \"query_text\": \"<string>\",\n  \"event_sink_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"alert_per_row\": false,\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sync_key\": \"<string>\",\n  \"alert_template\": {\n    \"info\": [\n      {\n        \"label\": \"string\",\n        \"value\": \"string\",\n        \"use_for_dedup\": false\n      },\n      {\n        \"label\": \"string\",\n        \"value\": \"string\",\n        \"use_for_dedup\": false\n      }\n    ],\n    \"actions\": [\n      {\n        \"label\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"label\": \"string\",\n        \"value\": \"string\"\n      }\n    ]\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"invalid query\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "d1dc87d0-5b28-4dd0-952b-8a14cf8720eb",
-          "name": "List detection rules",
-          "request": {
-            "name": "List detection rules",
-            "description": {
-              "content": "Lists all detection rules for a tenant (summaries exclude event_sink_ids).",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "detection_rule"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "tenant_id",
-                  "value": "<string>",
-                  "description": "(Required) Unique identifier for the tenant."
-                },
-                {
-                  "disabled": false,
-                  "key": "pagination[page_size]",
-                  "value": "<integer>",
-                  "description": "Maximum results per page."
-                },
-                {
-                  "disabled": false,
-                  "key": "pagination[page_token]",
-                  "value": "<string>",
-                  "description": "Cursor for the next page."
-                }
-              ],
-              "variable": [
-                {
-                  "description": "Your Scanner environment identifier from Settings > API Keys.",
-                  "type": "any",
-                  "value": "{{environment}}",
-                  "key": "environment"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "fba6fa4a-b4f6-4f47-ac50-1e229935ba9e",
-              "name": "Paginated list of detection rule summaries.",
-              "originalRequest": {
                 "url": {
+                  "raw": "{{baseUrl}}/v1/detection_rule?tenant_id=<string>&pagination[page_size]=<integer>&pagination[page_token]=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "v1",
                     "detection_rule"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
                   ],
                   "query": [
                     {
+                      "description": "(Required) Unique identifier for the tenant.",
                       "key": "tenant_id",
                       "value": "<string>"
                     },
                     {
+                      "description": "Maximum results per page.",
                       "key": "pagination[page_size]",
                       "value": "<integer>"
                     },
                     {
+                      "description": "Cursor for the next page.",
                       "key": "pagination[page_token]",
                       "value": "<string>"
                     }
-                  ],
-                  "variable": [
-                    {
-                      "description": "Your Scanner environment identifier from Settings > API Keys.",
-                      "type": "any",
-                      "value": "{{environment}}",
-                      "key": "environment"
-                    }
                   ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "Lists all detection rules for a tenant (summaries exclude event_sink_ids)."
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": {\n    \"detection_rules\": [\n      {\n        \"id\": \"string\",\n        \"tenant_id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"time_range_s\": 3896,\n        \"run_frequency_s\": 3103,\n        \"enabled_state_override\": \"string\",\n        \"severity\": \"string\",\n        \"query_text\": \"string\",\n        \"event_sink_ids\": [\n          \"string\",\n          \"string\"\n        ],\n        \"alert_per_row\": false,\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"prepared_query_id\": \"string\",\n        \"alert_template\": {\n          \"info\": [\n            {\n              \"label\": \"string\",\n              \"value\": \"string\",\n              \"use_for_dedup\": true\n            },\n            {\n              \"label\": \"string\",\n              \"value\": \"string\",\n              \"use_for_dedup\": true\n            }\n          ],\n          \"actions\": [\n            {\n              \"label\": \"string\",\n              \"value\": \"string\"\n            },\n            {\n              \"label\": \"string\",\n              \"value\": \"string\"\n            }\n          ]\n        },\n        \"created_at\": \"1974-05-02T11:13:24.986Z\",\n        \"updated_at\": \"1997-02-26T04:20:44.878Z\"\n      },\n      {\n        \"id\": \"string\",\n        \"tenant_id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"time_range_s\": 9659,\n        \"run_frequency_s\": 3615,\n        \"enabled_state_override\": \"string\",\n        \"severity\": \"string\",\n        \"query_text\": \"string\",\n        \"event_sink_ids\": [\n          \"string\",\n          \"string\"\n        ],\n        \"alert_per_row\": true,\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"prepared_query_id\": \"string\",\n        \"alert_template\": {\n          \"info\": [\n            {\n              \"label\": \"string\",\n              \"value\": \"string\",\n              \"use_for_dedup\": false\n            },\n            {\n              \"label\": \"string\",\n              \"value\": \"string\",\n              \"use_for_dedup\": true\n            }\n          ],\n          \"actions\": [\n            {\n              \"label\": \"string\",\n              \"value\": \"string\"\n            },\n            {\n              \"label\": \"string\",\n              \"value\": \"string\"\n            }\n          ]\n        },\n        \"created_at\": \"1969-08-07T01:59:45.805Z\",\n        \"updated_at\": \"2007-03-01T17:18:14.343Z\"\n      }\n    ]\n  },\n  \"pagination\": {\n    \"next_page_token\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "61dde8c0-4294-45fe-b266-fa281e6dd6f4",
-              "name": "Invalid request.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "detection_rule"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "id": "627e5d1c-dfad-44ba-955e-f091ae2ea5a3",
+                  "name": "Paginated list of detection rule summaries.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/detection_rule?tenant_id=<string>&pagination[page_size]=<integer>&pagination[page_token]=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "detection_rule"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Unique identifier for the tenant.",
+                          "key": "tenant_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum results per page.",
+                          "key": "pagination[page_size]",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Cursor for the next page.",
+                          "key": "pagination[page_token]",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "tenant_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "pagination[page_size]",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "pagination[page_token]",
-                      "value": "<string>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": [
-                    {
-                      "description": "Your Scanner environment identifier from Settings > API Keys.",
-                      "type": "any",
-                      "value": "{{environment}}",
-                      "key": "environment"
-                    }
-                  ]
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"detection_rules\": [\n      {\n        \"id\": \"<string>\",\n        \"tenant_id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"time_range_s\": \"<integer>\",\n        \"run_frequency_s\": \"<integer>\",\n        \"enabled_state_override\": \"<string>\",\n        \"severity\": \"<string>\",\n        \"query_text\": \"<string>\",\n        \"event_sink_ids\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"alert_per_row\": \"<boolean>\",\n        \"tags\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"prepared_query_id\": \"<string>\",\n        \"alert_template\": {\n          \"info\": [\n            {\n              \"label\": \"<string>\",\n              \"value\": \"<string>\",\n              \"use_for_dedup\": \"<boolean>\"\n            },\n            {\n              \"label\": \"<string>\",\n              \"value\": \"<string>\",\n              \"use_for_dedup\": \"<boolean>\"\n            }\n          ],\n          \"actions\": [\n            {\n              \"label\": \"<string>\",\n              \"value\": \"<string>\"\n            },\n            {\n              \"label\": \"<string>\",\n              \"value\": \"<string>\"\n            }\n          ]\n        },\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"tenant_id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"time_range_s\": \"<integer>\",\n        \"run_frequency_s\": \"<integer>\",\n        \"enabled_state_override\": \"<string>\",\n        \"severity\": \"<string>\",\n        \"query_text\": \"<string>\",\n        \"event_sink_ids\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"alert_per_row\": \"<boolean>\",\n        \"tags\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"prepared_query_id\": \"<string>\",\n        \"alert_template\": {\n          \"info\": [\n            {\n              \"label\": \"<string>\",\n              \"value\": \"<string>\",\n              \"use_for_dedup\": \"<boolean>\"\n            },\n            {\n              \"label\": \"<string>\",\n              \"value\": \"<string>\",\n              \"use_for_dedup\": \"<boolean>\"\n            }\n          ],\n          \"actions\": [\n            {\n              \"label\": \"<string>\",\n              \"value\": \"<string>\"\n            },\n            {\n              \"label\": \"<string>\",\n              \"value\": \"<string>\"\n            }\n          ]\n        },\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\"\n      }\n    ]\n  },\n  \"pagination\": {\n    \"next_page_token\": \"<string,null>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:57:43.000Z",
+                  "updatedAt": "2026-10-22T01:57:43.000Z",
+                  "uid": "35240-627e5d1c-dfad-44ba-955e-f091ae2ea5a3"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "7a2827fc-4c96-47b8-bb9e-9f807656c41d",
+                  "name": "Invalid request.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/detection_rule?tenant_id=<string>&pagination[page_size]=<integer>&pagination[page_token]=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "detection_rule"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Unique identifier for the tenant.",
+                          "key": "tenant_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum results per page.",
+                          "key": "pagination[page_size]",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Cursor for the next page.",
+                          "key": "pagination[page_token]",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:57:43.000Z",
+                  "updatedAt": "2026-10-22T01:57:43.000Z",
+                  "uid": "35240-7a2827fc-4c96-47b8-bb9e-9f807656c41d"
                 }
               ],
-              "body": "{\n  \"error\": \"invalid query\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T01:57:43.000Z",
+              "updatedAt": "2026-10-22T01:57:43.000Z",
+              "uid": "35240-965f696e-58cd-4dfc-9d83-0a5b16e88e95"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "93995d63-4eb1-4333-8c72-4821ab07f832",
-          "name": "Get detection rule",
-          "request": {
-            "name": "Get detection rule",
-            "description": {
-              "content": "Retrieves a specific detection rule by id.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "detection_rule",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) Resource identifier."
-                },
-                {
-                  "description": "Your Scanner environment identifier from Settings > API Keys.",
-                  "type": "any",
-                  "value": "{{environment}}",
-                  "key": "environment"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "40250c02-e85c-4cbf-950e-e98b34328764",
-              "name": "The detection rule.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "detection_rule",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Resource identifier."
-                    },
-                    {
-                      "description": "Your Scanner environment identifier from Settings > API Keys.",
-                      "type": "any",
-                      "value": "{{environment}}",
-                      "key": "environment"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"tenant_id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"time_range_s\": 6446,\n  \"run_frequency_s\": 4829,\n  \"enabled_state_override\": \"string\",\n  \"severity\": \"string\",\n  \"query_text\": \"string\",\n  \"event_sink_ids\": [\n    \"string\",\n    \"string\"\n  ],\n  \"alert_per_row\": true,\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"prepared_query_id\": \"string\",\n  \"alert_template\": {\n    \"info\": [\n      {\n        \"label\": \"string\",\n        \"value\": \"string\",\n        \"use_for_dedup\": true\n      },\n      {\n        \"label\": \"string\",\n        \"value\": \"string\",\n        \"use_for_dedup\": false\n      }\n    ],\n    \"actions\": [\n      {\n        \"label\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"label\": \"string\",\n        \"value\": \"string\"\n      }\n    ]\n  },\n  \"created_at\": \"1957-02-02T12:12:28.076Z\",\n  \"updated_at\": \"1960-05-17T14:31:40.928Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "bb09cc0e-77dc-449c-92ec-5dbb45fa4fe7",
-              "name": "Resource not found (or resolves to a non-user index).",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "detection_rule",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Resource identifier."
-                    },
-                    {
-                      "description": "Your Scanner environment identifier from Settings > API Keys.",
-                      "type": "any",
-                      "value": "{{environment}}",
-                      "key": "environment"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "9f0ca29d-0a33-4f60-99db-c0e9834d5635",
-          "name": "Update detection rule",
-          "request": {
-            "name": "Update detection rule",
-            "description": {
-              "content": "Updates a detection rule. For synced rules, only enabled_state_override is modifiable.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "detection_rule",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) Resource identifier."
-                },
-                {
-                  "description": "Your Scanner environment identifier from Settings > API Keys.",
-                  "type": "any",
-                  "value": "{{environment}}",
-                  "key": "environment"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"time_range_s\": \"<integer>\",\n  \"run_frequency_s\": \"<integer>\",\n  \"alert_per_row\": \"<boolean>\",\n  \"enabled_state_override\": \"<string>\",\n  \"severity\": \"<string>\",\n  \"query_text\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"event_sink_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sync_key\": \"<string>\",\n  \"alert_template\": {\n    \"info\": [\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\",\n        \"use_for_dedup\": \"<boolean>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\",\n        \"use_for_dedup\": \"<boolean>\"\n      }\n    ],\n    \"actions\": [\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ]\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "b3b05903-44fb-42fe-aa3d-5877f0aa2623",
-              "name": "Updated detection rule.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "detection_rule",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Resource identifier."
-                    },
-                    {
-                      "description": "Your Scanner environment identifier from Settings > API Keys.",
-                      "type": "any",
-                      "value": "{{environment}}",
-                      "key": "environment"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"time_range_s\": \"<integer>\",\n  \"run_frequency_s\": \"<integer>\",\n  \"alert_per_row\": \"<boolean>\",\n  \"enabled_state_override\": \"<string>\",\n  \"severity\": \"<string>\",\n  \"query_text\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"event_sink_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sync_key\": \"<string>\",\n  \"alert_template\": {\n    \"info\": [\n      {\n        \"label\": \"string\",\n        \"value\": \"string\",\n        \"use_for_dedup\": true\n      },\n      {\n        \"label\": \"string\",\n        \"value\": \"string\",\n        \"use_for_dedup\": true\n      }\n    ],\n    \"actions\": [\n      {\n        \"label\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"label\": \"string\",\n        \"value\": \"string\"\n      }\n    ]\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"tenant_id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"time_range_s\": 6446,\n  \"run_frequency_s\": 4829,\n  \"enabled_state_override\": \"string\",\n  \"severity\": \"string\",\n  \"query_text\": \"string\",\n  \"event_sink_ids\": [\n    \"string\",\n    \"string\"\n  ],\n  \"alert_per_row\": true,\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"prepared_query_id\": \"string\",\n  \"alert_template\": {\n    \"info\": [\n      {\n        \"label\": \"string\",\n        \"value\": \"string\",\n        \"use_for_dedup\": true\n      },\n      {\n        \"label\": \"string\",\n        \"value\": \"string\",\n        \"use_for_dedup\": false\n      }\n    ],\n    \"actions\": [\n      {\n        \"label\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"label\": \"string\",\n        \"value\": \"string\"\n      }\n    ]\n  },\n  \"created_at\": \"1957-02-02T12:12:28.076Z\",\n  \"updated_at\": \"1960-05-17T14:31:40.928Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "40a65b84-c638-4fe2-b0d9-9aae686ea338",
-              "name": "Invalid request.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "detection_rule",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Resource identifier."
-                    },
-                    {
-                      "description": "Your Scanner environment identifier from Settings > API Keys.",
-                      "type": "any",
-                      "value": "{{environment}}",
-                      "key": "environment"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"time_range_s\": \"<integer>\",\n  \"run_frequency_s\": \"<integer>\",\n  \"alert_per_row\": \"<boolean>\",\n  \"enabled_state_override\": \"<string>\",\n  \"severity\": \"<string>\",\n  \"query_text\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"event_sink_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sync_key\": \"<string>\",\n  \"alert_template\": {\n    \"info\": [\n      {\n        \"label\": \"string\",\n        \"value\": \"string\",\n        \"use_for_dedup\": true\n      },\n      {\n        \"label\": \"string\",\n        \"value\": \"string\",\n        \"use_for_dedup\": true\n      }\n    ],\n    \"actions\": [\n      {\n        \"label\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"label\": \"string\",\n        \"value\": \"string\"\n      }\n    ]\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"invalid query\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "12dd4bd3-62a9-47cf-b10d-1c434f30d352",
-              "name": "Resource not found (or resolves to a non-user index).",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "detection_rule",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Resource identifier."
-                    },
-                    {
-                      "description": "Your Scanner environment identifier from Settings > API Keys.",
-                      "type": "any",
-                      "value": "{{environment}}",
-                      "key": "environment"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"time_range_s\": \"<integer>\",\n  \"run_frequency_s\": \"<integer>\",\n  \"alert_per_row\": \"<boolean>\",\n  \"enabled_state_override\": \"<string>\",\n  \"severity\": \"<string>\",\n  \"query_text\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"event_sink_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sync_key\": \"<string>\",\n  \"alert_template\": {\n    \"info\": [\n      {\n        \"label\": \"string\",\n        \"value\": \"string\",\n        \"use_for_dedup\": true\n      },\n      {\n        \"label\": \"string\",\n        \"value\": \"string\",\n        \"use_for_dedup\": true\n      }\n    ],\n    \"actions\": [\n      {\n        \"label\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"label\": \"string\",\n        \"value\": \"string\"\n      }\n    ]\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "4da729c8-abf1-4091-b64d-2529e7342c3a",
-          "name": "Delete detection rule",
-          "request": {
-            "name": "Delete detection rule",
-            "description": {
-              "content": "Deletes a detection rule.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "detection_rule",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) Resource identifier."
-                },
-                {
-                  "description": "Your Scanner environment identifier from Settings > API Keys.",
-                  "type": "any",
-                  "value": "{{environment}}",
-                  "key": "environment"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "01f78001-8400-420d-b979-15be5cf95684",
-              "name": "Id and tenant_id of the deleted rule.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "detection_rule",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Resource identifier."
-                    },
-                    {
-                      "description": "Your Scanner environment identifier from Settings > API Keys.",
-                      "type": "any",
-                      "value": "{{environment}}",
-                      "key": "environment"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"tenant_id\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "f723d78a-78aa-4cec-94c7-2b8c3d76daad",
-              "name": "Resource not found (or resolves to a non-user index).",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "detection_rule",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Resource identifier."
-                    },
-                    {
-                      "description": "Your Scanner environment identifier from Settings > API Keys.",
-                      "type": "any",
-                      "value": "{{environment}}",
-                      "key": "environment"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "1ab49896-cb29-4837-a355-4fd0512423ab",
+          "createdAt": "2026-10-22T01:57:43.000Z",
+          "updatedAt": "2026-10-22T01:57:43.000Z",
+          "uid": "35240-1ab49896-cb29-4837-a355-4fd0512423ab"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "description": {
-        "content": "Your Scanner environment identifier from Settings > API Keys.",
-        "type": "text/plain"
-      },
-      "type": "any",
-      "value": "your-env-here",
-      "key": "environment"
-    },
-    {
-      "type": "string",
-      "value": "https://{{environment}}.scanner.dev",
-      "key": "baseUrl"
+      "id": "9eab2c60-8ac0-424c-9690-a1e8c2f2ce8a",
+      "createdAt": "2026-10-22T01:57:43.000Z",
+      "updatedAt": "2026-10-22T01:57:43.000Z",
+      "uid": "35240-9eab2c60-8ac0-424c-9690-a1e8c2f2ce8a"
     }
   ],
   "auth": {
@@ -1001,17 +894,19 @@
     "bearer": [
       {
         "key": "token",
-        "value": "{{bearerToken}}"
+        "value": "{{bearerToken}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "af4cf5c0-f853-4e48-b27f-1275ca1fb9ae",
-    "name": "Scanner Ad Hoc Queries Detection Rules API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Scanner is a cloud-native security data platform that indexes logs directly in Amazon S3 for fast full-text search, continuous streaming detections, and programmatic access to security data. This REST API (v1) covers searchable indexes, detection rules, event sinks, lookup tables, ad hoc queries, and account/query-capacity info. Authentication is a Scanner API key presented as an HTTP Bearer token. Most operations are tenant-scoped and require a `tenant_id`. The API base URL is environment-specific and shown in Settings > API Keys inside the Scanner app.\n\nContact Support:\n Name: Scanner",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "environment",
+      "value": "your-env-here"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{environment}}.scanner.dev"
     }
-  }
+  ]
 }
